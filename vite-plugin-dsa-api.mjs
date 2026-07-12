@@ -4,9 +4,12 @@ import { fileURLToPath } from "url";
 import {
   evaluateSource,
   findProblem,
+  getDefaultRunInput,
   getSolution,
+  isClassProblem,
   loadBank,
   readStarterCode,
+  runSourceOnce,
   sanitizeBankForClient,
 } from "./lib/engine.mjs";
 
@@ -90,7 +93,11 @@ export function dsaApiPlugin() {
               sendJson(res, 404, { error: "Problem not found" });
               return;
             }
-            sendJson(res, 200, { code: readStarterCode(problem, ROOT) });
+            sendJson(res, 200, {
+              code: readStarterCode(problem, ROOT),
+              defaultRunInput: getDefaultRunInput(problem),
+              isClassProblem: isClassProblem(problem),
+            });
             return;
           }
 
@@ -118,6 +125,32 @@ export function dsaApiPlugin() {
               return;
             }
             sendJson(res, 200, getSolution(problem));
+            return;
+          }
+
+          if (req.method === "POST" && url.pathname === "/api/run") {
+            const body = await readBody(req);
+            const problem = findProblem(bank, body.problemId);
+            if (!problem) {
+              sendJson(res, 404, { error: "Problem not found" });
+              return;
+            }
+            if (!body.code || typeof body.code !== "string") {
+              sendJson(res, 400, { error: "Missing code" });
+              return;
+            }
+
+            const { consoleOutput, returnValue, error: runError } = await runSourceOnce(
+              problem,
+              body.code,
+              body.input ?? "",
+              ROOT,
+            );
+            const output = [...consoleOutput];
+            if (runError) {
+              output.push({ type: "error", text: runError });
+            }
+            sendJson(res, 200, { consoleOutput: output, returnValue, error: runError });
             return;
           }
 

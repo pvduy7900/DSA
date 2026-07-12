@@ -1,8 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { CodeEditor } from "./CodeEditor";
+import { ConsolePanel } from "./ConsolePanel";
 import { GuidePanel } from "./GuidePanel";
-import type { Bank, ExerciseGuide, Problem, Solution, TestResult } from "./types";
+import type { Bank, ConsoleLine, ExerciseGuide, Problem, Solution, TestResult } from "./types";
 
 const CODE_STORAGE_KEY = "dsa-code-drafts";
+const RUN_INPUT_STORAGE_KEY = "dsa-run-inputs";
 
 function loadDrafts(): Record<string, string> {
   try {
@@ -18,6 +21,20 @@ function saveDraft(problemId: string, code: string) {
   localStorage.setItem(CODE_STORAGE_KEY, JSON.stringify(drafts));
 }
 
+function loadRunInputs(): Record<string, string> {
+  try {
+    return JSON.parse(localStorage.getItem(RUN_INPUT_STORAGE_KEY) ?? "{}");
+  } catch {
+    return {};
+  }
+}
+
+function saveRunInput(problemId: string, input: string) {
+  const inputs = loadRunInputs();
+  inputs[problemId] = input;
+  localStorage.setItem(RUN_INPUT_STORAGE_KEY, JSON.stringify(inputs));
+}
+
 export function App() {
   const [bank, setBank] = useState<Bank | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
@@ -25,6 +42,12 @@ export function App() {
   const [code, setCode] = useState("");
   const [results, setResults] = useState<TestResult[] | null>(null);
   const [summary, setSummary] = useState<{ passed: number; total: number } | null>(null);
+  const [consoleOutput, setConsoleOutput] = useState<ConsoleLine[]>([]);
+  const [hasRun, setHasRun] = useState(false);
+  const [runInput, setRunInput] = useState("");
+  const [isClassProblem, setIsClassProblem] = useState(false);
+  const [runningCode, setRunningCode] = useState(false);
+  const formatCodeRef = useRef<(() => void) | null>(null);
   const [solution, setSolution] = useState<Solution | null>(null);
   const [showSolution, setShowSolution] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -50,11 +73,22 @@ export function App() {
     }
   }, []);
 
+  const loadStarter = useCallback(async (problem: Problem) => {
+    const res = await fetch(`/api/starter/${problem.id}`);
+    const data = await res.json();
+    const savedInputs = loadRunInputs();
+    setIsClassProblem(Boolean(data.isClassProblem));
+    setRunInput(savedInputs[problem.id] ?? data.defaultRunInput ?? "");
+    return data.code as string;
+  }, []);
+
   const selectProblem = useCallback(async (problem: Problem) => {
     setSelectedProblem(problem);
     setSelectedTopic(problem.topic);
     setResults(null);
     setSummary(null);
+    setConsoleOutput([]);
+    setHasRun(false);
     setSolution(null);
     setShowSolution(false);
     setError(null);
@@ -63,19 +97,13 @@ export function App() {
     void loadGuide(problem.id);
 
     const drafts = loadDrafts();
-    if (drafts[problem.id]) {
-      setCode(drafts[problem.id]);
-      return;
-    }
-
     try {
-      const res = await fetch(`/api/starter/${problem.id}`);
-      const data = await res.json();
-      setCode(data.code);
+      const starterCode = await loadStarter(problem);
+      setCode(drafts[problem.id] ?? starterCode);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load starter code");
     }
-  }, [loadGuide]);
+  }, [loadGuide, loadStarter]);
 
   useEffect(() => {
     fetch("/api/bank")
@@ -109,6 +137,35 @@ export function App() {
     }
   };
 
+  const runCode = async () => {
+    if (!selectedProblem) return;
+    setRunningCode(true);
+    setError(null);
+    setConsoleOutput([]);
+    setHasRun(false);
+
+    try {
+      const res = await fetch("/api/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          problemId: selectedProblem.id,
+          code,
+          input: runInput,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Run failed");
+      setConsoleOutput(data.consoleOutput ?? []);
+      setHasRun(true);
+      saveRunInput(selectedProblem.id, runInput);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Run failed");
+    } finally {
+      setRunningCode(false);
+    }
+  };
+
   const runTests = async () => {
     if (!selectedProblem) return;
     setLoading(true);
@@ -135,12 +192,20 @@ export function App() {
 
   const resetCode = async () => {
     if (!selectedProblem) return;
-    const res = await fetch(`/api/starter/${selectedProblem.id}`);
-    const data = await res.json();
-    setCode(data.code);
-    saveDraft(selectedProblem.id, data.code);
+    try {
+      const starterCode = await loadStarter(selectedProblem);
+      setCode(starterCode);
+      saveDraft(selectedProblem.id, starterCode);
+    } catch {
+      const res = await fetch(`/api/starter/${selectedProblem.id}`);
+      const data = await res.json();
+      setCode(data.code);
+      saveDraft(selectedProblem.id, data.code);
+    }
     setResults(null);
     setSummary(null);
+    setConsoleOutput([]);
+    setHasRun(false);
     setShowSolution(false);
     setSolution(null);
   };
@@ -299,18 +364,57 @@ export function App() {
             )}
           </section>
 
-          <section className="panel editor-panel">
-            <div className="editor-header">
-              <h3>Your Solution</h3>
-              <span className="file-name">{selectedProblem.starter_file}</span>
-            </div>
-            <textarea
-              className="code-editor"
-              value={code}
-              onChange={(e) => handleCodeChange(e.target.value)}
-              spellCheck={false}
+          <div className="editor-column">
+            <section className="panel editor-panel">
+              <div className="editor-header">
+                <h3>Your Solution</h3>
+                <div className="editor-meta">
+                  <button
+                    className="btn ghost format-btn"
+                    onClick={() => formatCodeRef.current?.()}
+                    title="Format code (⌘⇧F / Ctrl+Shift+F)"
+                  >
+                    Format
+                  </button>
+                  <span className="file-name">{selectedProblem.starter_file}</span>
+                </div>
+              </div>
+              <div className="run-bar">
+                {!isClassProblem && (
+                  <input
+                    className="run-input"
+                    value={runInput}
+                    onChange={(e) => {
+                      setRunInput(e.target.value);
+                      if (selectedProblem) saveRunInput(selectedProblem.id, e.target.value);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") void runCode();
+                    }}
+                    placeholder='Input, ví dụ: hello hoặc [1,2,3]'
+                    spellCheck={false}
+                  />
+                )}
+                <button className="btn run-btn" onClick={runCode} disabled={runningCode}>
+                  {runningCode ? "Running..." : "Run"}
+                </button>
+              </div>
+              <CodeEditor
+                value={code}
+                fileName={selectedProblem.starter_file}
+                onChange={handleCodeChange}
+                onFormatRef={(format) => {
+                  formatCodeRef.current = format;
+                }}
+              />
+            </section>
+
+            <ConsolePanel
+              lines={consoleOutput}
+              hasRun={hasRun}
+              onClear={() => setConsoleOutput([])}
             />
-          </section>
+          </div>
         </div>
 
         {(results || error) && (

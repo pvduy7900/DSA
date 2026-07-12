@@ -26,6 +26,11 @@ export interface Bank {
   problems: Problem[];
 }
 
+export interface ConsoleLine {
+  type: "log" | "warn" | "error" | "info" | "debug";
+  text: string;
+}
+
 export interface TestResult {
   case: number;
   passed: boolean;

@@ -1,0 +1,5979 @@
+{
+  "topics": {
+    "arrays": {
+      "name": "Big O & Array Manipulations",
+      "aliases": [
+        "1",
+        "array",
+        "big-o",
+        "strings"
+      ],
+      "sub_items": [
+        "Big O and Scalability",
+        "Space Complexity",
+        "Static vs Dynamic Arrays",
+        "Strings and Arrays manipulation",
+        "Implementing an Array from scratch",
+        "Reverse A String",
+        "Merge Sorted Arrays"
+      ]
+    },
+    "hash_tables": {
+      "name": "Hash Tables",
+      "aliases": [
+        "2",
+        "hash",
+        "hashtable"
+      ],
+      "sub_items": [
+        "Hash Functions and Collisions",
+        "Implementing a Hash Table",
+        "Keys() and Collisions",
+        "Hash Tables VS Arrays",
+        "First Recurring Character"
+      ]
+    },
+    "linked_lists": {
+      "name": "Linked Lists (Singly & Doubly)",
+      "aliases": [
+        "3",
+        "linked-list",
+        "ll"
+      ],
+      "sub_items": [
+        "Pointers concepts",
+        "Singly Linked Lists (append, prepend, insert, remove)",
+        "Doubly Linked Lists implementation",
+        "Singly VS Doubly",
+        "Reverse a Linked List"
+      ]
+    },
+    "stacks_queues": {
+      "name": "Stacks & Queues",
+      "aliases": [
+        "4",
+        "stack",
+        "queue"
+      ],
+      "sub_items": [
+        "Stacks VS Queues concepts",
+        "Stack Implementation (Array)",
+        "Queue Implementation (Array)",
+        "Implement Queues using Stacks"
+      ]
+    },
+    "trees": {
+      "name": "Trees (BST, Heaps, Tries)",
+      "aliases": [
+        "5",
+        "tree",
+        "bst",
+        "heap",
+        "trie"
+      ],
+      "sub_items": [
+        "Binary Trees and O(log n)",
+        "Binary Search Trees (insert, lookup, remove)",
+        "AVL Trees (rotations + balance)",
+        "Red Black Trees (concepts)",
+        "Binary Heaps and Priority Queues",
+        "Trie data structure"
+      ]
+    },
+    "graphs": {
+      "name": "Graphs",
+      "aliases": [
+        "6",
+        "graph"
+      ],
+      "sub_items": [
+        "Types Of Graphs",
+        "Adjacency Matrix, Adjacency List, Edge List",
+        "Build Adjacency List from Edges",
+        "BFS Traversal",
+        "DFS Traversal"
+      ]
+    },
+    "recursion": {
+      "name": "Recursion",
+      "aliases": [
+        "7",
+        "recursive"
+      ],
+      "sub_items": [
+        "Anatomy of Recursion",
+        "Recursive VS Iterative",
+        "Factorial",
+        "Fibonacci",
+        "Reverse String With Recursion"
+      ]
+    },
+    "sorting": {
+      "name": "Sorting Algorithms",
+      "aliases": [
+        "8",
+        "sort"
+      ],
+      "sub_items": [
+        "Stable VS Unstable Algorithms",
+        "Bubble Sort",
+        "Selection Sort",
+        "Insertion Sort",
+        "Merge Sort",
+        "Quick Sort",
+        "Heap Sort",
+        "Counting Sort",
+        "Radix Sort"
+      ]
+    },
+    "searching": {
+      "name": "Searching + Traversal (BFS & DFS)",
+      "aliases": [
+        "9",
+        "search",
+        "bfs",
+        "dfs",
+        "traversal"
+      ],
+      "sub_items": [
+        "Linear Search",
+        "Binary Search",
+        "Tree Traversals (PreOrder, InOrder, PostOrder)",
+        "BFS in Graphs",
+        "DFS in Graphs",
+        "Dijkstra Shortest Path",
+        "Bellman-Ford Shortest Path",
+        "Validate a BST"
+      ]
+    },
+    "dynamic_programming": {
+      "name": "Dynamic Programming",
+      "aliases": [
+        "10",
+        "dp",
+        "memoization"
+      ],
+      "sub_items": [
+        "Memoization concepts",
+        "Fibonacci Top-down (Memoization)",
+        "Fibonacci Bottom-up (Tabulation)"
+      ]
+    }
+  },
+  "problems": [
+    {
+      "id": "reverse_string",
+      "topic": "arrays",
+      "title": "Reverse a String",
+      "statement": "Given a string `s`, return the reversed string. You must solve this in O(n) time. Aim for O(1) extra space if using an in-place approach on a mutable buffer.",
+      "constraints": [
+        "1 <= len(s) <= 10^5",
+        "s consists of printable ASCII characters",
+        "Target time complexity: O(n)",
+        "Target space complexity: O(1) extra space (in-place) or O(n) if returning a new string"
+      ],
+      "examples": [
+        {
+          "input": "s = \"hello\"",
+          "output": "\"olleh\"",
+          "explanation": "Characters are reversed in order."
+        },
+        {
+          "input": "s = \"a\"",
+          "output": "\"a\"",
+          "explanation": "Single character stays the same."
+        },
+        {
+          "input": "s = \"racecar\"",
+          "output": "\"racecar\"",
+          "explanation": "Palindrome reverses to itself."
+        }
+      ],
+      "function": "reverseString",
+      "starter_file": "reverseString.js",
+      "tests": [
+        {
+          "args": [
+            "hello"
+          ],
+          "expected": "olleh"
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": "a"
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            "racecar"
+          ],
+          "expected": "racecar"
+        },
+        {
+          "args": [
+            "abc def"
+          ],
+          "expected": "fed cba"
+        },
+        {
+          "args": [
+            "12345"
+          ],
+          "expected": "54321"
+        },
+        {
+          "args": [
+            "!@#"
+          ],
+          "expected": "#@!"
+        },
+        {
+          "args": [
+            "ab"
+          ],
+          "expected": "ba"
+        }
+      ],
+      "solution": {
+        "time": "O(n)",
+        "space": "O(n)",
+        "approach": "Use two pointers swapping characters from both ends toward the center, or build a new reversed string.",
+        "code": "export function reverseString(s) {\n  const chars = s.split('');\n  let left = 0;\n  let right = chars.length - 1;\n  while (left < right) {\n    [chars[left], chars[right]] = [chars[right], chars[left]];\n    left += 1;\n    right -= 1;\n  }\n  return chars.join('');\n}"
+      }
+    },
+    {
+      "id": "merge_sorted_arrays",
+      "topic": "arrays",
+      "title": "Merge Sorted Arrays",
+      "statement": "You are given two sorted integer arrays `nums1` and `nums2`. Merge them into a single sorted array and return it.",
+      "constraints": [
+        "0 <= len(nums1), len(nums2) <= 10^4",
+        "nums1 and nums2 are sorted in non-decreasing order",
+        "Target time complexity: O(n + m)",
+        "Target space complexity: O(n + m) for the output array"
+      ],
+      "examples": [
+        {
+          "input": "nums1 = [1,3,5], nums2 = [2,4,6]",
+          "output": "[1,2,3,4,5,6]"
+        },
+        {
+          "input": "nums1 = [], nums2 = [1]",
+          "output": "[1]"
+        },
+        {
+          "input": "nums1 = [2,2], nums2 = [2]",
+          "output": "[2,2,2]"
+        }
+      ],
+      "function": "mergeSortedArrays",
+      "starter_file": "mergeSortedArrays.js",
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              3,
+              5
+            ],
+            [
+              2,
+              4,
+              6
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "args": [
+            [],
+            [
+              1
+            ]
+          ],
+          "expected": [
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              1
+            ],
+            []
+          ],
+          "expected": [
+            1
+          ]
+        },
+        {
+          "args": [
+            [],
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              2,
+              2
+            ],
+            [
+              2
+            ]
+          ],
+          "expected": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              4,
+              5,
+              6
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "args": [
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "args": [
+            [
+              -3,
+              0,
+              4
+            ],
+            [
+              -1,
+              2
+            ]
+          ],
+          "expected": [
+            -3,
+            -1,
+            0,
+            2,
+            4
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(n + m)",
+        "space": "O(n + m)",
+        "approach": "Use two pointers to compare the smallest remaining elements from each array and append the smaller one.",
+        "code": "export function mergeSortedArrays(nums1, nums2) {\n  let i = 0;\n  let j = 0;\n  const merged = [];\n  while (i < nums1.length && j < nums2.length) {\n    if (nums1[i] <= nums2[j]) {\n      merged.push(nums1[i++]);\n    } else {\n      merged.push(nums2[j++]);\n    }\n  }\n  return merged.concat(nums1.slice(i), nums2.slice(j));\n}"
+      }
+    },
+    {
+      "id": "first_recurring_character",
+      "topic": "hash_tables",
+      "title": "First Recurring Character",
+      "statement": "Given a string, return the first character that appears more than once when scanning left to right. If no character repeats, return `null`.",
+      "constraints": [
+        "0 <= len(s) <= 10^5",
+        "Target time complexity: O(n)",
+        "Target space complexity: O(k) where k is the number of unique characters"
+      ],
+      "examples": [
+        {
+          "input": "s = \"abccbaac\"",
+          "output": "\"c\"",
+          "explanation": "c is the first character seen again."
+        },
+        {
+          "input": "s = \"abcdef\"",
+          "output": "null"
+        },
+        {
+          "input": "s = \"aabb\"",
+          "output": "\"a\""
+        }
+      ],
+      "function": "firstRecurringCharacter",
+      "starter_file": "firstRecurringCharacter.js",
+      "tests": [
+        {
+          "args": [
+            "abccbaac"
+          ],
+          "expected": "c"
+        },
+        {
+          "args": [
+            "abcdef"
+          ],
+          "expected": null
+        },
+        {
+          "args": [
+            "aabb"
+          ],
+          "expected": "a"
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": null
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": null
+        },
+        {
+          "args": [
+            "aba"
+          ],
+          "expected": "a"
+        },
+        {
+          "args": [
+            "zzyx"
+          ],
+          "expected": "z"
+        },
+        {
+          "args": [
+            "programming"
+          ],
+          "expected": "r"
+        }
+      ],
+      "solution": {
+        "time": "O(n)",
+        "space": "O(k)",
+        "approach": "Track seen characters in a hash set. Return the first character already in the set.",
+        "code": "export function firstRecurringCharacter(s) {\n  const seen = new Set();\n  for (const ch of s) {\n    if (seen.has(ch)) return ch;\n    seen.add(ch);\n  }\n  return null;\n}"
+      }
+    },
+    {
+      "id": "reverse_linked_list",
+      "topic": "linked_lists",
+      "title": "Reverse a Linked List",
+      "statement": "Given the head of a singly linked list, reverse the list and return the new head. Input is provided as a array of values for convenience.",
+      "constraints": [
+        "0 <= number of nodes <= 10^4",
+        "Target time complexity: O(n)",
+        "Target space complexity: O(1) extra space"
+      ],
+      "examples": [
+        {
+          "input": "values = [1,2,3,4,5]",
+          "output": "[5,4,3,2,1]"
+        },
+        {
+          "input": "values = []",
+          "output": "[]"
+        },
+        {
+          "input": "values = [1]",
+          "output": "[1]"
+        }
+      ],
+      "function": "reverseLinkedList",
+      "starter_file": "reverseLinkedList.js",
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          ],
+          "expected": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1
+            ]
+          ],
+          "expected": [
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2
+            ]
+          ],
+          "expected": [
+            2,
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              10,
+              20,
+              30
+            ]
+          ],
+          "expected": [
+            30,
+            20,
+            10
+          ]
+        },
+        {
+          "args": [
+            [
+              7,
+              7,
+              7
+            ]
+          ],
+          "expected": [
+            7,
+            7,
+            7
+          ]
+        },
+        {
+          "args": [
+            [
+              -1,
+              0,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            0,
+            -1
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": [
+            3,
+            2,
+            1
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(n)",
+        "space": "O(1)",
+        "approach": "Iterate with three pointers: previous, current, and next. Rewire current.next to previous at each step.",
+        "code": "import { listToLinkedList, linkedListToList } from '../lib/linkedListUtils.js';\n\nexport function reverseLinkedList(values) {\n  let head = listToLinkedList(values);\n  let prev = null;\n  let curr = head;\n  while (curr) {\n    const next = curr.next;\n    curr.next = prev;\n    prev = curr;\n    curr = next;\n  }\n  return linkedListToList(prev);\n}"
+      }
+    },
+    {
+      "id": "queue_using_stacks",
+      "topic": "stacks_queues",
+      "title": "Implement Queue using Stacks",
+      "statement": "Implement a queue class `MyQueue` using only stack operations (`push`, `pop`, `peek`, `empty`). Support `enqueue(x)`, `dequeue()`, `peek()`, and `is_empty()`.",
+      "constraints": [
+        "Amortized O(1) time per operation is acceptable",
+        "You may only use LIFO stack behavior internally"
+      ],
+      "examples": [
+        {
+          "input": "enqueue(1), enqueue(2), peek(), dequeue(), is_empty()",
+          "output": "peek=1, dequeue=1, is_empty=False"
+        },
+        {
+          "input": "enqueue(3), dequeue(), dequeue(), is_empty()",
+          "output": "dequeue=3 then empty queue"
+        }
+      ],
+      "function": "MyQueue",
+      "starter_file": "queueUsingStacks.js",
+      "tests": [
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "enqueue",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "enqueue",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "peek",
+              "expected": 1
+            },
+            {
+              "op": "dequeue",
+              "expected": 1
+            },
+            {
+              "op": "isEmpty",
+              "expected": false
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "enqueue",
+              "args": [
+                3
+              ]
+            },
+            {
+              "op": "dequeue",
+              "expected": 3
+            },
+            {
+              "op": "dequeue",
+              "expected": null
+            },
+            {
+              "op": "isEmpty",
+              "expected": true
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "enqueue",
+              "args": [
+                10
+              ]
+            },
+            {
+              "op": "enqueue",
+              "args": [
+                20
+              ]
+            },
+            {
+              "op": "enqueue",
+              "args": [
+                30
+              ]
+            },
+            {
+              "op": "dequeue",
+              "expected": 10
+            },
+            {
+              "op": "peek",
+              "expected": 20
+            },
+            {
+              "op": "dequeue",
+              "expected": 20
+            },
+            {
+              "op": "dequeue",
+              "expected": 30
+            },
+            {
+              "op": "isEmpty",
+              "expected": true
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "enqueue",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "peek",
+              "expected": 5
+            },
+            {
+              "op": "peek",
+              "expected": 5
+            },
+            {
+              "op": "dequeue",
+              "expected": 5
+            },
+            {
+              "op": "isEmpty",
+              "expected": true
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "isEmpty",
+              "expected": true
+            },
+            {
+              "op": "enqueue",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "enqueue",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "dequeue",
+              "expected": 1
+            },
+            {
+              "op": "enqueue",
+              "args": [
+                3
+              ]
+            },
+            {
+              "op": "peek",
+              "expected": 2
+            },
+            {
+              "op": "dequeue",
+              "expected": 2
+            },
+            {
+              "op": "dequeue",
+              "expected": 3
+            }
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(1) amortized",
+        "space": "O(n)",
+        "approach": "Use an inbox stack for enqueue and an outbox stack for dequeue/peek. Transfer elements only when outbox is empty.",
+        "code": "export class MyQueue {\n  constructor() {\n    this.inbox = [];\n    this.outbox = [];\n  }\n\n  enqueue(x) {\n    this.inbox.push(x);\n  }\n\n  shift() {\n    if (!this.outbox.length) {\n      while (this.inbox.length) {\n        this.outbox.push(this.inbox.pop());\n      }\n    }\n  }\n\n  dequeue() {\n    this.shift();\n    return this.outbox.length ? this.outbox.pop() : null;\n  }\n\n  peek() {\n    this.shift();\n    return this.outbox.length ? this.outbox[this.outbox.length - 1] : null;\n  }\n\n  isEmpty() {\n    return !this.inbox.length && !this.outbox.length;\n  }\n}"
+      }
+    },
+    {
+      "id": "validate_bst",
+      "topic": "searching",
+      "title": "Validate a Binary Search Tree",
+      "statement": "Given a binary tree represented as a level-order list (using `null` for missing children), determine whether it is a valid BST.",
+      "constraints": [
+        "Number of nodes <= 10^4",
+        "Node values fit in 32-bit signed integers",
+        "Target time complexity: O(n)"
+      ],
+      "examples": [
+        {
+          "input": "tree = [5,1,4,null,null,3,6]",
+          "output": "false"
+        },
+        {
+          "input": "tree = [2,1,3]",
+          "output": "true"
+        },
+        {
+          "input": "tree = [10,5,15,null,null,6,20]",
+          "output": "false"
+        }
+      ],
+      "function": "validateBst",
+      "starter_file": "validateBst.js",
+      "tests": [
+        {
+          "args": [
+            [
+              5,
+              1,
+              4,
+              null,
+              null,
+              3,
+              6
+            ]
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            [
+              2,
+              1,
+              3
+            ]
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            [
+              10,
+              5,
+              15,
+              null,
+              null,
+              6,
+              20
+            ]
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            [
+              1
+            ]
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            [
+              5,
+              4,
+              6,
+              3,
+              null,
+              null,
+              7
+            ]
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            [
+              5,
+              4,
+              6,
+              3,
+              null,
+              null,
+              4
+            ]
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            [
+              2147483647
+            ]
+          ],
+          "expected": true
+        }
+      ],
+      "solution": {
+        "time": "O(n)",
+        "space": "O(h)",
+        "approach": "DFS with valid min/max bounds for each node. Every node must be strictly between parent bounds.",
+        "code": "export function validateBst(tree) {\n  if (!tree.length || tree[0] === null) return true;\n\n  function dfs(index, low, high) {\n    if (index >= tree.length || tree[index] === null) return true;\n    const value = tree[index];\n    if (value <= low || value >= high) return false;\n    return dfs(index * 2 + 1, low, value) && dfs(index * 2 + 2, value, high);\n  }\n\n  return dfs(0, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY);\n}"
+      }
+    },
+    {
+      "id": "factorial",
+      "topic": "recursion",
+      "title": "Factorial",
+      "statement": "Compute `n!` recursively. By definition, `0! = 1`.",
+      "constraints": [
+        "0 <= n <= 12",
+        "Must use recursion"
+      ],
+      "examples": [
+        {
+          "input": "n = 5",
+          "output": "120"
+        },
+        {
+          "input": "n = 0",
+          "output": "1"
+        },
+        {
+          "input": "n = 1",
+          "output": "1"
+        }
+      ],
+      "function": "factorial",
+      "starter_file": "factorial.js",
+      "tests": [
+        {
+          "args": [
+            5
+          ],
+          "expected": 120
+        },
+        {
+          "args": [
+            0
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            1
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            3
+          ],
+          "expected": 6
+        },
+        {
+          "args": [
+            4
+          ],
+          "expected": 24
+        },
+        {
+          "args": [
+            6
+          ],
+          "expected": 720
+        },
+        {
+          "args": [
+            10
+          ],
+          "expected": 3628800
+        },
+        {
+          "args": [
+            12
+          ],
+          "expected": 479001600
+        }
+      ],
+      "solution": {
+        "time": "O(n)",
+        "space": "O(n)",
+        "approach": "Base case n <= 1 returns 1. Recursive case multiplies n by factorial(n-1).",
+        "code": "export function factorial(n) {\n  if (n <= 1) return 1;\n  return n * factorial(n - 1);\n}"
+      }
+    },
+    {
+      "id": "fibonacci_recursive",
+      "topic": "recursion",
+      "title": "Fibonacci (Recursive)",
+      "statement": "Return the nth Fibonacci number using recursion. Assume F(0)=0 and F(1)=1.",
+      "constraints": [
+        "0 <= n <= 25",
+        "Must use recursion"
+      ],
+      "examples": [
+        {
+          "input": "n = 6",
+          "output": "8"
+        },
+        {
+          "input": "n = 0",
+          "output": "0"
+        },
+        {
+          "input": "n = 10",
+          "output": "55"
+        }
+      ],
+      "function": "fibonacci",
+      "starter_file": "fibonacciRecursive.js",
+      "tests": [
+        {
+          "args": [
+            6
+          ],
+          "expected": 8
+        },
+        {
+          "args": [
+            0
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            1
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            10
+          ],
+          "expected": 55
+        },
+        {
+          "args": [
+            2
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            3
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            5
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            15
+          ],
+          "expected": 610
+        }
+      ],
+      "solution": {
+        "time": "O(2^n)",
+        "space": "O(n)",
+        "approach": "Naive recursion: fib(n) = fib(n-1) + fib(n-2) with base cases 0 and 1.",
+        "code": "export function fibonacci(n) {\n  if (n <= 1) return n;\n  return fibonacci(n - 1) + fibonacci(n - 2);\n}"
+      }
+    },
+    {
+      "id": "merge_sort",
+      "topic": "sorting",
+      "title": "Merge Sort",
+      "statement": "Sort an integer array in ascending order using merge sort. Return the sorted array.",
+      "constraints": [
+        "0 <= len(nums) <= 10^4",
+        "Target time complexity: O(n log n)",
+        "Target space complexity: O(n)"
+      ],
+      "examples": [
+        {
+          "input": "nums = [38,27,43,3]",
+          "output": "[3,27,38,43]"
+        },
+        {
+          "input": "nums = [5,1,4,2,8]",
+          "output": "[1,2,4,5,8]"
+        },
+        {
+          "input": "nums = []",
+          "output": "[]"
+        }
+      ],
+      "function": "mergeSort",
+      "starter_file": "mergeSort.js",
+      "tests": [
+        {
+          "args": [
+            [
+              38,
+              27,
+              43,
+              3
+            ]
+          ],
+          "expected": [
+            3,
+            27,
+            38,
+            43
+          ]
+        },
+        {
+          "args": [
+            [
+              5,
+              1,
+              4,
+              2,
+              8
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1
+            ]
+          ],
+          "expected": [
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              3,
+              3,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            3,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              9,
+              8,
+              7,
+              6,
+              5
+            ]
+          ],
+          "expected": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "args": [
+            [
+              -2,
+              -1,
+              0,
+              1
+            ]
+          ],
+          "expected": [
+            -2,
+            -1,
+            0,
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              10,
+              -10,
+              0
+            ]
+          ],
+          "expected": [
+            -10,
+            0,
+            10
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(n log n)",
+        "space": "O(n)",
+        "approach": "Recursively split the array, sort halves, then merge two sorted halves with two pointers.",
+        "code": "export function mergeSort(nums) {\n  if (nums.length <= 1) return [...nums];\n  const mid = Math.floor(nums.length / 2);\n  const left = mergeSort(nums.slice(0, mid));\n  const right = mergeSort(nums.slice(mid));\n  const merged = [];\n  let i = 0;\n  let j = 0;\n  while (i < left.length && j < right.length) {\n    if (left[i] <= right[j]) merged.push(left[i++]);\n    else merged.push(right[j++]);\n  }\n  return merged.concat(left.slice(i), right.slice(j));\n}"
+      }
+    },
+    {
+      "id": "binary_search",
+      "topic": "searching",
+      "title": "Binary Search",
+      "statement": "Given a sorted array of distinct integers and a target, return the index of target or -1 if not found.",
+      "constraints": [
+        "1 <= len(nums) <= 10^4",
+        "nums is sorted ascending",
+        "Target time complexity: O(log n)"
+      ],
+      "examples": [
+        {
+          "input": "nums = [-1,0,3,5,9,12], target = 9",
+          "output": "4"
+        },
+        {
+          "input": "nums = [-1,0,3,5,9,12], target = 2",
+          "output": "-1"
+        },
+        {
+          "input": "nums = [5], target = 5",
+          "output": "0"
+        }
+      ],
+      "function": "binarySearch",
+      "starter_file": "binarySearch.js",
+      "tests": [
+        {
+          "args": [
+            [
+              -1,
+              0,
+              3,
+              5,
+              9,
+              12
+            ],
+            9
+          ],
+          "expected": 4
+        },
+        {
+          "args": [
+            [
+              -1,
+              0,
+              3,
+              5,
+              9,
+              12
+            ],
+            2
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            [
+              5
+            ],
+            5
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              5
+            ],
+            1
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            1
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            5
+          ],
+          "expected": 4
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            3
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              10,
+              20,
+              30,
+              40
+            ],
+            25
+          ],
+          "expected": -1
+        }
+      ],
+      "solution": {
+        "time": "O(log n)",
+        "space": "O(1)",
+        "approach": "Maintain left/right pointers. Compare mid element with target and halve the search range.",
+        "code": "export function binarySearch(nums, target) {\n  let left = 0;\n  let right = nums.length - 1;\n  while (left <= right) {\n    const mid = Math.floor((left + right) / 2);\n    if (nums[mid] === target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n  }\n  return -1;\n}"
+      }
+    },
+    {
+      "id": "fibonacci_dp",
+      "topic": "dynamic_programming",
+      "title": "Fibonacci (Dynamic Programming)",
+      "statement": "Return the nth Fibonacci number using dynamic programming (bottom-up tabulation). F(0)=0, F(1)=1.",
+      "constraints": [
+        "0 <= n <= 10^5",
+        "Target time complexity: O(n)",
+        "Target space complexity: O(1) or O(n)"
+      ],
+      "examples": [
+        {
+          "input": "n = 10",
+          "output": "55"
+        },
+        {
+          "input": "n = 0",
+          "output": "0"
+        },
+        {
+          "input": "n = 20",
+          "output": "6765"
+        }
+      ],
+      "function": "fibonacciDp",
+      "starter_file": "fibonacciDp.js",
+      "tests": [
+        {
+          "args": [
+            10
+          ],
+          "expected": 55
+        },
+        {
+          "args": [
+            0
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            1
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            20
+          ],
+          "expected": 6765
+        },
+        {
+          "args": [
+            2
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            3
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            5
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            30
+          ],
+          "expected": 832040
+        }
+      ],
+      "solution": {
+        "time": "O(n)",
+        "space": "O(1)",
+        "approach": "Iteratively build up from base cases using two variables for previous two values.",
+        "code": "export function fibonacciDp(n) {\n  if (n <= 1) return n;\n  let prev2 = 0;\n  let prev1 = 1;\n  for (let i = 2; i <= n; i += 1) {\n    const curr = prev1 + prev2;\n    prev2 = prev1;\n    prev1 = curr;\n  }\n  return prev1;\n}"
+      }
+    },
+    {
+      "id": "graph_bfs",
+      "topic": "graphs",
+      "title": "Breadth-First Search Traversal",
+      "statement": "Given an undirected graph as an adjacency list and a starting node, return the BFS traversal order.",
+      "constraints": [
+        "1 <= number of nodes <= 10^4",
+        "Nodes are labeled from 0 to n-1 or given as strings",
+        "Target time complexity: O(V + E)"
+      ],
+      "examples": [
+        {
+          "input": "graph = {0:[1,2],1:[0,3],2:[0],3:[1]}, start = 0",
+          "output": "[0,1,2,3]"
+        },
+        {
+          "input": "graph = {0:[1],1:[0]}, start = 1",
+          "output": "[1,0]"
+        }
+      ],
+      "function": "bfs",
+      "starter_file": "graphBfs.js",
+      "tests": [
+        {
+          "args": [
+            {
+              "0": [
+                "1",
+                "2"
+              ],
+              "1": [
+                "0",
+                "3"
+              ],
+              "2": [
+                "0"
+              ],
+              "3": [
+                "1"
+              ]
+            },
+            "0"
+          ],
+          "expected": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "args": [
+            {
+              "0": [
+                "1"
+              ],
+              "1": [
+                "0"
+              ]
+            },
+            "1"
+          ],
+          "expected": [
+            "1",
+            "0"
+          ]
+        },
+        {
+          "args": [
+            {
+              "0": []
+            },
+            "0"
+          ],
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "args": [
+            {
+              "0": [
+                "1",
+                "2"
+              ],
+              "1": [
+                "0",
+                "2"
+              ],
+              "2": [
+                "0",
+                "1"
+              ]
+            },
+            "0"
+          ],
+          "expected": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "args": [
+            {
+              "a": [
+                "b"
+              ],
+              "b": [
+                "a",
+                "c"
+              ],
+              "c": [
+                "b"
+              ]
+            },
+            "a"
+          ],
+          "expected": [
+            "a",
+            "b",
+            "c"
+          ]
+        },
+        {
+          "args": [
+            {
+              "0": [
+                "1"
+              ],
+              "1": [
+                "0",
+                "2"
+              ],
+              "2": [
+                "1",
+                "3"
+              ],
+              "3": [
+                "2"
+              ]
+            },
+            "0"
+          ],
+          "expected": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "args": [
+            {
+              "5": [
+                "6"
+              ],
+              "6": [
+                "5",
+                "7"
+              ],
+              "7": [
+                "6"
+              ]
+            },
+            "5"
+          ],
+          "expected": [
+            "5",
+            "6",
+            "7"
+          ]
+        },
+        {
+          "args": [
+            {
+              "0": [
+                "1",
+                "3"
+              ],
+              "1": [
+                "0",
+                "2"
+              ],
+              "2": [
+                "1"
+              ],
+              "3": [
+                "0"
+              ]
+            },
+            "0"
+          ],
+          "expected": [
+            "0",
+            "1",
+            "3",
+            "2"
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(V + E)",
+        "space": "O(V)",
+        "approach": "Use a queue and visited set. Dequeue a node, append to result, enqueue unvisited neighbors.",
+        "code": "export function bfs(graph, start) {\n  if (!(start in graph)) return [];\n  const visited = new Set([start]);\n  const queue = [start];\n  const order = [];\n  while (queue.length) {\n    const node = queue.shift();\n    order.push(node);\n    for (const neighbor of graph[node]) {\n      if (!visited.has(neighbor)) {\n        visited.add(neighbor);\n        queue.push(neighbor);\n      }\n    }\n  }\n  return order;\n}"
+      }
+    },
+    {
+      "id": "min_heap_operations",
+      "topic": "trees",
+      "title": "Min Heap - Insert and Extract",
+      "statement": "Implement a min-heap class with `insert(val)` and `extract_min()`. `peek_min()` should return the smallest element without removing it.",
+      "constraints": [
+        "0 <= number of operations <= 10^4",
+        "insert and extract_min should run in O(log n)"
+      ],
+      "examples": [
+        {
+          "input": "insert(4), insert(1), peek_min(), extract_min()",
+          "output": "peek=1, extract=1"
+        },
+        {
+          "input": "insert(10), insert(3), extract_min(), extract_min()",
+          "output": "3 then 10"
+        }
+      ],
+      "function": "MinHeap",
+      "starter_file": "minHeap.js",
+      "tests": [
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                4
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "peekMin",
+              "expected": 1
+            },
+            {
+              "op": "extractMin",
+              "expected": 1
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                10
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                3
+              ]
+            },
+            {
+              "op": "extractMin",
+              "expected": 3
+            },
+            {
+              "op": "extractMin",
+              "expected": 10
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                8
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "extractMin",
+              "expected": 1
+            },
+            {
+              "op": "peekMin",
+              "expected": 2
+            },
+            {
+              "op": "extractMin",
+              "expected": 2
+            },
+            {
+              "op": "extractMin",
+              "expected": 5
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                7
+              ]
+            },
+            {
+              "op": "peekMin",
+              "expected": 7
+            },
+            {
+              "op": "extractMin",
+              "expected": 7
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                9
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                9
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "extractMin",
+              "expected": 1
+            },
+            {
+              "op": "extractMin",
+              "expected": 9
+            },
+            {
+              "op": "extractMin",
+              "expected": 9
+            }
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(log n) per operation",
+        "space": "O(n)",
+        "approach": "Use an array-backed heap. Bubble up on insert and bubble down on extract.",
+        "code": "export class MinHeap {\n  constructor() {\n    this.heap = [];\n  }\n\n  insert(val) {\n    this.heap.push(val);\n    this.bubbleUp(this.heap.length - 1);\n  }\n\n  peekMin() {\n    return this.heap.length ? this.heap[0] : null;\n  }\n\n  extractMin() {\n    if (!this.heap.length) return null;\n    if (this.heap.length === 1) return this.heap.pop();\n    const root = this.heap[0];\n    this.heap[0] = this.heap.pop();\n    this.bubbleDown(0);\n    return root;\n  }\n\n  bubbleUp(index) {\n    while (index > 0) {\n      const parent = Math.floor((index - 1) / 2);\n      if (this.heap[index] < this.heap[parent]) {\n        [this.heap[index], this.heap[parent]] = [this.heap[parent], this.heap[index]];\n        index = parent;\n      } else break;\n    }\n  }\n\n  bubbleDown(index) {\n    const size = this.heap.length;\n    while (true) {\n      const left = index * 2 + 1;\n      const right = index * 2 + 2;\n      let smallest = index;\n      if (left < size && this.heap[left] < this.heap[smallest]) smallest = left;\n      if (right < size && this.heap[right] < this.heap[smallest]) smallest = right;\n      if (smallest === index) break;\n      [this.heap[index], this.heap[smallest]] = [this.heap[smallest], this.heap[index]];\n      index = smallest;\n    }\n  }\n}"
+      }
+    },
+    {
+      "id": "implement_dynamic_array",
+      "topic": "arrays",
+      "title": "Implement a Dynamic Array",
+      "statement": "Implement a `DynamicArray` class backed by a JavaScript array. Support `push(val)`, `pop()` (return removed value or null if empty), `get(index)` (return value or null if out of bounds), and `size()`.",
+      "constraints": [
+        "0 <= number of operations <= 10^4",
+        "push and pop should be O(1) amortized",
+        "get should be O(1)"
+      ],
+      "examples": [
+        {
+          "input": "push(1), push(2), get(0), pop()",
+          "output": "get=1, pop=2"
+        },
+        {
+          "input": "pop() on empty array",
+          "output": "null"
+        }
+      ],
+      "function": "DynamicArray",
+      "starter_file": "dynamicArray.js",
+      "tests": [
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "push",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "push",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "get",
+              "args": [
+                0
+              ],
+              "expected": 1
+            },
+            {
+              "op": "size",
+              "expected": 2
+            },
+            {
+              "op": "pop",
+              "expected": 2
+            },
+            {
+              "op": "size",
+              "expected": 1
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "pop",
+              "expected": null
+            },
+            {
+              "op": "size",
+              "expected": 0
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "push",
+              "args": [
+                10
+              ]
+            },
+            {
+              "op": "push",
+              "args": [
+                20
+              ]
+            },
+            {
+              "op": "push",
+              "args": [
+                30
+              ]
+            },
+            {
+              "op": "get",
+              "args": [
+                2
+              ],
+              "expected": 30
+            },
+            {
+              "op": "get",
+              "args": [
+                5
+              ],
+              "expected": null
+            },
+            {
+              "op": "pop",
+              "expected": 30
+            },
+            {
+              "op": "pop",
+              "expected": 20
+            },
+            {
+              "op": "pop",
+              "expected": 10
+            },
+            {
+              "op": "pop",
+              "expected": null
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "push",
+              "args": [
+                7
+              ]
+            },
+            {
+              "op": "get",
+              "args": [
+                0
+              ],
+              "expected": 7
+            },
+            {
+              "op": "get",
+              "args": [
+                -1
+              ],
+              "expected": null
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "push",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "push",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "push",
+              "args": [
+                3
+              ]
+            },
+            {
+              "op": "pop",
+              "expected": 3
+            },
+            {
+              "op": "push",
+              "args": [
+                4
+              ]
+            },
+            {
+              "op": "get",
+              "args": [
+                1
+              ],
+              "expected": 2
+            },
+            {
+              "op": "get",
+              "args": [
+                2
+              ],
+              "expected": 4
+            },
+            {
+              "op": "size",
+              "expected": 3
+            }
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(1) amortized per push/pop",
+        "space": "O(n)",
+        "approach": "Wrap a native array. push uses array.push, pop uses array.pop, get checks bounds.",
+        "code": "export class DynamicArray {\n  constructor() {\n    this.data = [];\n  }\n\n  push(val) {\n    this.data.push(val);\n  }\n\n  pop() {\n    return this.data.length ? this.data.pop() : null;\n  }\n\n  get(index) {\n    if (index < 0 || index >= this.data.length) return null;\n    return this.data[index];\n  }\n\n  size() {\n    return this.data.length;\n  }\n}"
+      }
+    },
+    {
+      "id": "implement_hash_table",
+      "topic": "hash_tables",
+      "title": "Implement a Hash Table",
+      "statement": "Implement a `HashMap` class with `set(key, value)`, `get(key)` (return value or null), `has(key)` (boolean), and `keys()` (array of keys in insertion order).",
+      "constraints": [
+        "Keys and values are strings or numbers",
+        "Average O(1) time per operation",
+        "Handle collisions with chaining"
+      ],
+      "examples": [
+        {
+          "input": "set('a',1), set('b',2), get('a')",
+          "output": "1"
+        },
+        {
+          "input": "has('c')",
+          "output": "false"
+        }
+      ],
+      "function": "HashMap",
+      "starter_file": "hashMap.js",
+      "tests": [
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "set",
+              "args": [
+                "a",
+                1
+              ]
+            },
+            {
+              "op": "set",
+              "args": [
+                "b",
+                2
+              ]
+            },
+            {
+              "op": "get",
+              "args": [
+                "a"
+              ],
+              "expected": 1
+            },
+            {
+              "op": "has",
+              "args": [
+                "b"
+              ],
+              "expected": true
+            },
+            {
+              "op": "has",
+              "args": [
+                "c"
+              ],
+              "expected": false
+            },
+            {
+              "op": "keys",
+              "expected": [
+                "a",
+                "b"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "set",
+              "args": [
+                1,
+                "one"
+              ]
+            },
+            {
+              "op": "set",
+              "args": [
+                2,
+                "two"
+              ]
+            },
+            {
+              "op": "get",
+              "args": [
+                2
+              ],
+              "expected": "two"
+            },
+            {
+              "op": "set",
+              "args": [
+                1,
+                "ONE"
+              ]
+            },
+            {
+              "op": "get",
+              "args": [
+                1
+              ],
+              "expected": "ONE"
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "get",
+              "args": [
+                "missing"
+              ],
+              "expected": null
+            },
+            {
+              "op": "keys",
+              "expected": []
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "set",
+              "args": [
+                "x",
+                10
+              ]
+            },
+            {
+              "op": "set",
+              "args": [
+                "y",
+                20
+              ]
+            },
+            {
+              "op": "set",
+              "args": [
+                "z",
+                30
+              ]
+            },
+            {
+              "op": "keys",
+              "expected": [
+                "x",
+                "y",
+                "z"
+              ]
+            },
+            {
+              "op": "get",
+              "args": [
+                "y"
+              ],
+              "expected": 20
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "set",
+              "args": [
+                "dup",
+                1
+              ]
+            },
+            {
+              "op": "set",
+              "args": [
+                "dup",
+                2
+              ]
+            },
+            {
+              "op": "get",
+              "args": [
+                "dup"
+              ],
+              "expected": 2
+            },
+            {
+              "op": "has",
+              "args": [
+                "dup"
+              ],
+              "expected": true
+            }
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(1) average",
+        "space": "O(n)",
+        "approach": "Use an object/map for chaining buckets. Track key order separately for keys().",
+        "code": "export class HashMap {\n  constructor() {\n    this.buckets = new Map();\n    this.order = [];\n  }\n\n  set(key, value) {\n    if (!this.buckets.has(key)) this.order.push(key);\n    this.buckets.set(key, value);\n  }\n\n  get(key) {\n    return this.buckets.has(key) ? this.buckets.get(key) : null;\n  }\n\n  has(key) {\n    return this.buckets.has(key);\n  }\n\n  keys() {\n    return [...this.order];\n  }\n}"
+      }
+    },
+    {
+      "id": "singly_linked_list",
+      "topic": "linked_lists",
+      "title": "Singly Linked List Operations",
+      "statement": "Implement a `SinglyLinkedList` class with `append(val)`, `prepend(val)`, `insertAt(index, val)`, `removeAt(index)`, and `toArray()`. Return null from removeAt if index is invalid.",
+      "constraints": [
+        "0 <= operations <= 10^4",
+        "append/prepend O(1), insertAt/removeAt O(n)"
+      ],
+      "examples": [
+        {
+          "input": "append(1), append(2), prepend(0)",
+          "output": "[0,1,2]"
+        },
+        {
+          "input": "insertAt(1,5), removeAt(2)",
+          "output": "[0,5,2]"
+        }
+      ],
+      "function": "SinglyLinkedList",
+      "starter_file": "singlyLinkedList.js",
+      "tests": [
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "append",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "append",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "prepend",
+              "args": [
+                0
+              ]
+            },
+            {
+              "op": "toArray",
+              "expected": [
+                0,
+                1,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "append",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "insertAt",
+              "args": [
+                1,
+                9
+              ]
+            },
+            {
+              "op": "insertAt",
+              "args": [
+                0,
+                0
+              ]
+            },
+            {
+              "op": "toArray",
+              "expected": [
+                0,
+                1,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "append",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "append",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "append",
+              "args": [
+                3
+              ]
+            },
+            {
+              "op": "removeAt",
+              "args": [
+                1
+              ],
+              "expected": 2
+            },
+            {
+              "op": "toArray",
+              "expected": [
+                1,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "removeAt",
+              "args": [
+                0
+              ],
+              "expected": null
+            },
+            {
+              "op": "toArray",
+              "expected": []
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "append",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "removeAt",
+              "args": [
+                5
+              ],
+              "expected": null
+            },
+            {
+              "op": "insertAt",
+              "args": [
+                10,
+                1
+              ],
+              "expected": null
+            }
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(n) for insert/remove",
+        "space": "O(n)",
+        "approach": "Maintain head pointer. Walk nodes for index-based insert/remove.",
+        "code": "class Node {\n  constructor(val, next = null) {\n    this.val = val;\n    this.next = next;\n  }\n}\n\nexport class SinglyLinkedList {\n  constructor() {\n    this.head = null;\n    this.length = 0;\n  }\n\n  toArray() {\n    const out = [];\n    let curr = this.head;\n    while (curr) {\n      out.push(curr.val);\n      curr = curr.next;\n    }\n    return out;\n  }\n\n  append(val) {\n    const node = new Node(val);\n    if (!this.head) {\n      this.head = node;\n    } else {\n      let curr = this.head;\n      while (curr.next) curr = curr.next;\n      curr.next = node;\n    }\n    this.length += 1;\n  }\n\n  prepend(val) {\n    this.head = new Node(val, this.head);\n    this.length += 1;\n  }\n\n  insertAt(index, val) {\n    if (index < 0 || index > this.length) return null;\n    if (index === 0) {\n      this.prepend(val);\n      return val;\n    }\n    let curr = this.head;\n    for (let i = 0; i < index - 1; i += 1) curr = curr.next;\n    curr.next = new Node(val, curr.next);\n    this.length += 1;\n    return val;\n  }\n\n  removeAt(index) {\n    if (index < 0 || index >= this.length) return null;\n    if (index === 0) {\n      const removed = this.head.val;\n      this.head = this.head.next;\n      this.length -= 1;\n      return removed;\n    }\n    let curr = this.head;\n    for (let i = 0; i < index - 1; i += 1) curr = curr.next;\n    const removed = curr.next.val;\n    curr.next = curr.next.next;\n    this.length -= 1;\n    return removed;\n  }\n}"
+      }
+    },
+    {
+      "id": "doubly_linked_list",
+      "topic": "linked_lists",
+      "title": "Doubly Linked List",
+      "statement": "Implement a `DoublyLinkedList` with `append(val)`, `prepend(val)`, `remove(val)` (first occurrence), and `toArray()` (head to tail).",
+      "constraints": [
+        "Values are integers",
+        "remove returns true if removed, false otherwise"
+      ],
+      "examples": [
+        {
+          "input": "append(1), append(2), prepend(0)",
+          "output": "[0,1,2]"
+        },
+        {
+          "input": "remove(1)",
+          "output": "[0,2]"
+        }
+      ],
+      "function": "DoublyLinkedList",
+      "starter_file": "doublyLinkedList.js",
+      "tests": [
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "append",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "append",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "prepend",
+              "args": [
+                0
+              ]
+            },
+            {
+              "op": "toArray",
+              "expected": [
+                0,
+                1,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "append",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "append",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "remove",
+              "args": [
+                1
+              ],
+              "expected": true
+            },
+            {
+              "op": "toArray",
+              "expected": [
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "prepend",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "remove",
+              "args": [
+                9
+              ],
+              "expected": false
+            },
+            {
+              "op": "toArray",
+              "expected": [
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "append",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "append",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "append",
+              "args": [
+                3
+              ]
+            },
+            {
+              "op": "remove",
+              "args": [
+                2
+              ],
+              "expected": true
+            },
+            {
+              "op": "toArray",
+              "expected": [
+                1,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "append",
+              "args": [
+                7
+              ]
+            },
+            {
+              "op": "prepend",
+              "args": [
+                6
+              ]
+            },
+            {
+              "op": "remove",
+              "args": [
+                6
+              ],
+              "expected": true
+            },
+            {
+              "op": "remove",
+              "args": [
+                7
+              ],
+              "expected": true
+            },
+            {
+              "op": "toArray",
+              "expected": []
+            }
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(n) remove, O(1) append/prepend",
+        "space": "O(n)",
+        "approach": "Use head/tail pointers and prev/next links for O(1) ends and scan for remove.",
+        "code": "class Node {\n  constructor(val, prev = null, next = null) {\n    this.val = val;\n    this.prev = prev;\n    this.next = next;\n  }\n}\n\nexport class DoublyLinkedList {\n  constructor() {\n    this.head = null;\n    this.tail = null;\n  }\n\n  toArray() {\n    const out = [];\n    let curr = this.head;\n    while (curr) {\n      out.push(curr.val);\n      curr = curr.next;\n    }\n    return out;\n  }\n\n  append(val) {\n    const node = new Node(val);\n    if (!this.head) {\n      this.head = this.tail = node;\n    } else {\n      node.prev = this.tail;\n      this.tail.next = node;\n      this.tail = node;\n    }\n  }\n\n  prepend(val) {\n    const node = new Node(val);\n    if (!this.head) {\n      this.head = this.tail = node;\n    } else {\n      node.next = this.head;\n      this.head.prev = node;\n      this.head = node;\n    }\n  }\n\n  remove(val) {\n    let curr = this.head;\n    while (curr) {\n      if (curr.val === val) {\n        if (curr.prev) curr.prev.next = curr.next;\n        else this.head = curr.next;\n        if (curr.next) curr.next.prev = curr.prev;\n        else this.tail = curr.prev;\n        return true;\n      }\n      curr = curr.next;\n    }\n    return false;\n  }\n}"
+      }
+    },
+    {
+      "id": "implement_stack",
+      "topic": "stacks_queues",
+      "title": "Implement a Stack",
+      "statement": "Implement a `Stack` class using an array: `push(val)`, `pop()`, `peek()`, `isEmpty()`.",
+      "constraints": [
+        "All operations O(1)",
+        "pop/peek return null when empty"
+      ],
+      "examples": [
+        {
+          "input": "push(1), push(2), peek(), pop()",
+          "output": "peek=2, pop=2"
+        }
+      ],
+      "function": "Stack",
+      "starter_file": "stack.js",
+      "tests": [
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "push",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "push",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "peek",
+              "expected": 2
+            },
+            {
+              "op": "pop",
+              "expected": 2
+            },
+            {
+              "op": "isEmpty",
+              "expected": false
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "isEmpty",
+              "expected": true
+            },
+            {
+              "op": "pop",
+              "expected": null
+            },
+            {
+              "op": "peek",
+              "expected": null
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "push",
+              "args": [
+                10
+              ]
+            },
+            {
+              "op": "push",
+              "args": [
+                20
+              ]
+            },
+            {
+              "op": "pop",
+              "expected": 20
+            },
+            {
+              "op": "peek",
+              "expected": 10
+            },
+            {
+              "op": "pop",
+              "expected": 10
+            },
+            {
+              "op": "isEmpty",
+              "expected": true
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "push",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "push",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "pop",
+              "expected": 5
+            },
+            {
+              "op": "pop",
+              "expected": 5
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "push",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "push",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "push",
+              "args": [
+                3
+              ]
+            },
+            {
+              "op": "pop",
+              "expected": 3
+            },
+            {
+              "op": "pop",
+              "expected": 2
+            },
+            {
+              "op": "peek",
+              "expected": 1
+            }
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(1)",
+        "space": "O(n)",
+        "approach": "Array-backed stack using push/pop on the end.",
+        "code": "export class Stack {\n  constructor() {\n    this.items = [];\n  }\n\n  push(val) {\n    this.items.push(val);\n  }\n\n  pop() {\n    return this.items.length ? this.items.pop() : null;\n  }\n\n  peek() {\n    return this.items.length ? this.items[this.items.length - 1] : null;\n  }\n\n  isEmpty() {\n    return this.items.length === 0;\n  }\n}"
+      }
+    },
+    {
+      "id": "implement_queue",
+      "topic": "stacks_queues",
+      "title": "Implement a Queue",
+      "statement": "Implement a `Queue` class using an array: `enqueue(val)`, `dequeue()`, `peek()`, `isEmpty()`.",
+      "constraints": [
+        "Amortized O(1) per operation",
+        "dequeue/peek return null when empty"
+      ],
+      "examples": [
+        {
+          "input": "enqueue(1), enqueue(2), dequeue()",
+          "output": "1"
+        }
+      ],
+      "function": "Queue",
+      "starter_file": "queue.js",
+      "tests": [
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "enqueue",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "enqueue",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "peek",
+              "expected": 1
+            },
+            {
+              "op": "dequeue",
+              "expected": 1
+            },
+            {
+              "op": "isEmpty",
+              "expected": false
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "isEmpty",
+              "expected": true
+            },
+            {
+              "op": "dequeue",
+              "expected": null
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "enqueue",
+              "args": [
+                10
+              ]
+            },
+            {
+              "op": "enqueue",
+              "args": [
+                20
+              ]
+            },
+            {
+              "op": "dequeue",
+              "expected": 10
+            },
+            {
+              "op": "dequeue",
+              "expected": 20
+            },
+            {
+              "op": "isEmpty",
+              "expected": true
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "enqueue",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "peek",
+              "expected": 5
+            },
+            {
+              "op": "peek",
+              "expected": 5
+            },
+            {
+              "op": "dequeue",
+              "expected": 5
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "enqueue",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "enqueue",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "enqueue",
+              "args": [
+                3
+              ]
+            },
+            {
+              "op": "dequeue",
+              "expected": 1
+            },
+            {
+              "op": "peek",
+              "expected": 2
+            },
+            {
+              "op": "dequeue",
+              "expected": 2
+            }
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(1) amortized",
+        "space": "O(n)",
+        "approach": "Use array with head index to avoid costly shift, or use simple shift for learning.",
+        "code": "export class Queue {\n  constructor() {\n    this.items = [];\n    this.head = 0;\n  }\n\n  enqueue(val) {\n    this.items.push(val);\n  }\n\n  dequeue() {\n    if (this.isEmpty()) return null;\n    return this.items[this.head++];\n  }\n\n  peek() {\n    return this.isEmpty() ? null : this.items[this.head];\n  }\n\n  isEmpty() {\n    return this.head >= this.items.length;\n  }\n}"
+      }
+    },
+    {
+      "id": "bst_operations",
+      "topic": "trees",
+      "title": "Binary Search Tree Operations",
+      "statement": "Implement a `BST` class with `insert(val)`, `search(val)` (boolean), `remove(val)` (boolean), and `inorder()` (sorted array).",
+      "constraints": [
+        "Values are integers",
+        "Average O(log n) for balanced trees, O(n) worst case"
+      ],
+      "examples": [
+        {
+          "input": "insert(5), insert(3), insert(7), inorder()",
+          "output": "[3,5,7]"
+        },
+        {
+          "input": "search(3), remove(3)",
+          "output": "true, then [5,7]"
+        }
+      ],
+      "function": "BST",
+      "starter_file": "bst.js",
+      "tests": [
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                3
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                7
+              ]
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                3,
+                5,
+                7
+              ]
+            },
+            {
+              "op": "search",
+              "args": [
+                3
+              ],
+              "expected": true
+            },
+            {
+              "op": "search",
+              "args": [
+                9
+              ],
+              "expected": false
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                10
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                15
+              ]
+            },
+            {
+              "op": "remove",
+              "args": [
+                5
+              ],
+              "expected": true
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                10,
+                15
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                8
+              ]
+            },
+            {
+              "op": "remove",
+              "args": [
+                99
+              ],
+              "expected": false
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                8
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                1,
+                2,
+                5,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                4
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                6
+              ]
+            },
+            {
+              "op": "remove",
+              "args": [
+                4
+              ],
+              "expected": true
+            },
+            {
+              "op": "search",
+              "args": [
+                4
+              ],
+              "expected": false
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                2,
+                6
+              ]
+            }
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(h) per operation",
+        "space": "O(n)",
+        "approach": "Classic BST recursion for insert/search; remove handles leaf, one child, and two children.",
+        "code": "class Node {\n  constructor(val, left = null, right = null) {\n    this.val = val;\n    this.left = left;\n    this.right = right;\n  }\n}\n\nexport class BST {\n  constructor() {\n    this.root = null;\n  }\n\n  insert(val) {\n    const add = (node) => {\n      if (!node) return new Node(val);\n      if (val < node.val) node.left = add(node.left);\n      else if (val > node.val) node.right = add(node.right);\n      return node;\n    };\n    this.root = add(this.root);\n  }\n\n  search(val) {\n    let node = this.root;\n    while (node) {\n      if (val === node.val) return true;\n      node = val < node.val ? node.left : node.right;\n    }\n    return false;\n  }\n\n  inorder() {\n    const out = [];\n    const walk = (node) => {\n      if (!node) return;\n      walk(node.left);\n      out.push(node.val);\n      walk(node.right);\n    };\n    walk(this.root);\n    return out;\n  }\n\n  remove(val) {\n    const minValue = (node) => {\n      while (node.left) node = node.left;\n      return node.val;\n    };\n\n    const del = (node, target) => {\n      if (!node) return null;\n      if (target < node.val) node.left = del(node.left, target);\n      else if (target > node.val) node.right = del(node.right, target);\n      else {\n        if (!node.left) return node.right;\n        if (!node.right) return node.left;\n        const successor = minValue(node.right);\n        node.val = successor;\n        node.right = del(node.right, successor);\n      }\n      return node;\n    };\n\n    const before = this.search(val);\n    if (!before) return false;\n    this.root = del(this.root, val);\n    return true;\n  }\n}"
+      }
+    },
+    {
+      "id": "implement_trie",
+      "topic": "trees",
+      "title": "Implement a Trie",
+      "statement": "Implement a `Trie` with `insert(word)`, `search(word)` (exact match), and `startsWith(prefix)`.",
+      "constraints": [
+        "Words contain lowercase letters a-z",
+        "O(m) time where m is word length"
+      ],
+      "examples": [
+        {
+          "input": "insert('apple'), search('apple')",
+          "output": "true"
+        },
+        {
+          "input": "search('app'), startsWith('app')",
+          "output": "false, true"
+        }
+      ],
+      "function": "Trie",
+      "starter_file": "trie.js",
+      "tests": [
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                "apple"
+              ]
+            },
+            {
+              "op": "search",
+              "args": [
+                "apple"
+              ],
+              "expected": true
+            },
+            {
+              "op": "search",
+              "args": [
+                "app"
+              ],
+              "expected": false
+            },
+            {
+              "op": "startsWith",
+              "args": [
+                "app"
+              ],
+              "expected": true
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                "cat"
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                "car"
+              ]
+            },
+            {
+              "op": "startsWith",
+              "args": [
+                "ca"
+              ],
+              "expected": true
+            },
+            {
+              "op": "search",
+              "args": [
+                "ca"
+              ],
+              "expected": false
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "search",
+              "args": [
+                "hello"
+              ],
+              "expected": false
+            },
+            {
+              "op": "startsWith",
+              "args": [
+                "he"
+              ],
+              "expected": false
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                "a"
+              ]
+            },
+            {
+              "op": "search",
+              "args": [
+                "a"
+              ],
+              "expected": true
+            },
+            {
+              "op": "startsWith",
+              "args": [
+                "a"
+              ],
+              "expected": true
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                "dog"
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                "dot"
+              ]
+            },
+            {
+              "op": "search",
+              "args": [
+                "dot"
+              ],
+              "expected": true
+            },
+            {
+              "op": "startsWith",
+              "args": [
+                "do"
+              ],
+              "expected": true
+            }
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(m)",
+        "space": "O(n * m)",
+        "approach": "Each node stores children map and isEnd flag.",
+        "code": "export class Trie {\n  constructor() {\n    this.root = {};\n  }\n\n  insert(word) {\n    let node = this.root;\n    for (const ch of word) {\n      if (!node[ch]) node[ch] = {};\n      node = node[ch];\n    }\n    node.$ = true;\n  }\n\n  traverse(word) {\n    let node = this.root;\n    for (const ch of word) {\n      if (!node[ch]) return null;\n      node = node[ch];\n    }\n    return node;\n  }\n\n  search(word) {\n    const node = this.traverse(word);\n    return !!(node && node.$);\n  }\n\n  startsWith(prefix) {\n    return this.traverse(prefix) !== null;\n  }\n}"
+      }
+    },
+    {
+      "id": "build_adjacency_list",
+      "topic": "graphs",
+      "title": "Build Adjacency List from Edges",
+      "statement": "Given an array of edges `[from, to]` and a boolean `directed`, return an adjacency list (object mapping node -> sorted neighbor array).",
+      "constraints": [
+        "Nodes may be strings or numbers",
+        "O(E log E) or O(E) acceptable"
+      ],
+      "examples": [
+        {
+          "input": "edges=[[0,1],[0,2],[1,3]], directed=false",
+          "output": "{0:[1,2],1:[0,3],2:[0],3:[1]}"
+        },
+        {
+          "input": "directed=true",
+          "output": "only outgoing edges"
+        }
+      ],
+      "function": "buildAdjacencyList",
+      "starter_file": "buildAdjacencyList.js",
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            false
+          ],
+          "expected": {
+            "0": [
+              1,
+              2
+            ],
+            "1": [
+              0,
+              3
+            ],
+            "2": [
+              0
+            ],
+            "3": [
+              1
+            ]
+          }
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ]
+            ],
+            true
+          ],
+          "expected": {
+            "1": [
+              2
+            ],
+            "2": [
+              3
+            ]
+          }
+        },
+        {
+          "args": [
+            [],
+            false
+          ],
+          "expected": {}
+        },
+        {
+          "args": [
+            [
+              [
+                5,
+                6
+              ],
+              [
+                6,
+                5
+              ]
+            ],
+            false
+          ],
+          "expected": {
+            "5": [
+              6
+            ],
+            "6": [
+              5
+            ]
+          }
+        },
+        {
+          "args": [
+            [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "b",
+                "c"
+              ]
+            ],
+            true
+          ],
+          "expected": {
+            "a": [
+              "b"
+            ],
+            "b": [
+              "c"
+            ]
+          }
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            false
+          ],
+          "expected": {
+            "0": [
+              1,
+              2
+            ],
+            "1": [
+              0,
+              2
+            ],
+            "2": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "args": [
+            [
+              [
+                10,
+                20
+              ]
+            ],
+            false
+          ],
+          "expected": {
+            "10": [
+              20
+            ],
+            "20": [
+              10
+            ]
+          }
+        },
+        {
+          "args": [
+            [
+              [
+                3,
+                4
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            false
+          ],
+          "expected": {
+            "3": [
+              4
+            ],
+            "4": [
+              3
+            ]
+          }
+        }
+      ],
+      "solution": {
+        "time": "O(E)",
+        "space": "O(V + E)",
+        "approach": "For each edge, add outgoing and optionally reverse edge for undirected graphs. Sort neighbors.",
+        "code": "export function buildAdjacencyList(edges, directed = false) {\n  const graph = {};\n  const add = (a, b) => {\n    if (!graph[a]) graph[a] = [];\n    if (!graph[a].includes(b)) graph[a].push(b);\n    graph[a].sort();\n  };\n\n  for (const [from, to] of edges) {\n    add(from, to);\n    if (!directed) add(to, from);\n  }\n  return graph;\n}"
+      }
+    },
+    {
+      "id": "graph_dfs",
+      "topic": "graphs",
+      "title": "Depth-First Search Traversal",
+      "statement": "Given an undirected graph as an adjacency list and a start node, return DFS traversal order.",
+      "constraints": [
+        "O(V + E) time",
+        "Visit neighbors in listed order"
+      ],
+      "examples": [
+        {
+          "input": "graph={0:[1,2],1:[0,3],2:[0],3:[1]}, start=0",
+          "output": "[0,1,3,2]"
+        }
+      ],
+      "function": "dfs",
+      "starter_file": "graphDfs.js",
+      "tests": [
+        {
+          "args": [
+            {
+              "0": [
+                1,
+                2
+              ],
+              "1": [
+                0,
+                3
+              ],
+              "2": [
+                0
+              ],
+              "3": [
+                1
+              ]
+            },
+            0
+          ],
+          "expected": [
+            0,
+            1,
+            3,
+            2
+          ]
+        },
+        {
+          "args": [
+            {
+              "0": [
+                1
+              ],
+              "1": [
+                0
+              ]
+            },
+            1
+          ],
+          "expected": [
+            1,
+            0
+          ]
+        },
+        {
+          "args": [
+            {
+              "0": []
+            },
+            0
+          ],
+          "expected": [
+            0
+          ]
+        },
+        {
+          "args": [
+            {
+              "0": [
+                1,
+                2
+              ],
+              "1": [
+                0,
+                2
+              ],
+              "2": [
+                0,
+                1
+              ]
+            },
+            0
+          ],
+          "expected": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            {
+              "a": [
+                "b"
+              ],
+              "b": [
+                "a",
+                "c"
+              ],
+              "c": [
+                "b"
+              ]
+            },
+            "a"
+          ],
+          "expected": [
+            "a",
+            "b",
+            "c"
+          ]
+        },
+        {
+          "args": [
+            {
+              "0": [
+                1
+              ],
+              "1": [
+                0,
+                2
+              ],
+              "2": [
+                1,
+                3
+              ],
+              "3": [
+                2
+              ]
+            },
+            0
+          ],
+          "expected": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            {
+              "5": [
+                6
+              ],
+              "6": [
+                5,
+                7
+              ],
+              "7": [
+                6
+              ]
+            },
+            5
+          ],
+          "expected": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "args": [
+            {
+              "0": [
+                1,
+                3
+              ],
+              "1": [
+                0,
+                2
+              ],
+              "2": [
+                1
+              ],
+              "3": [
+                0
+              ]
+            },
+            0
+          ],
+          "expected": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(V + E)",
+        "space": "O(V)",
+        "approach": "Recursive or iterative DFS with visited set.",
+        "code": "export function dfs(graph, start) {\n  if (!(start in graph)) return [];\n  const visited = new Set();\n  const order = [];\n\n  const walk = (node) => {\n    visited.add(node);\n    order.push(node);\n    for (const neighbor of graph[node]) {\n      if (!visited.has(neighbor)) walk(neighbor);\n    }\n  };\n\n  walk(start);\n  return order;\n}"
+      }
+    },
+    {
+      "id": "reverse_string_recursive",
+      "topic": "recursion",
+      "title": "Reverse String (Recursive)",
+      "statement": "Reverse a string using recursion. Do not use loops.",
+      "constraints": [
+        "Must use recursion",
+        "O(n) time, O(n) stack space"
+      ],
+      "examples": [
+        {
+          "input": "s = 'hello'",
+          "output": "'olleh'"
+        },
+        {
+          "input": "s = 'a'",
+          "output": "'a'"
+        }
+      ],
+      "function": "reverseStringRecursive",
+      "starter_file": "reverseStringRecursive.js",
+      "tests": [
+        {
+          "args": [
+            "hello"
+          ],
+          "expected": "olleh"
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": "a"
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            "racecar"
+          ],
+          "expected": "racecar"
+        },
+        {
+          "args": [
+            "ab"
+          ],
+          "expected": "ba"
+        },
+        {
+          "args": [
+            "123"
+          ],
+          "expected": "321"
+        },
+        {
+          "args": [
+            "abc def"
+          ],
+          "expected": "fed cba"
+        },
+        {
+          "args": [
+            "!@#"
+          ],
+          "expected": "#@!"
+        }
+      ],
+      "solution": {
+        "time": "O(n)",
+        "space": "O(n)",
+        "approach": "Return last char + reverse of substring without last char. Base case: empty or single char.",
+        "code": "export function reverseStringRecursive(s) {\n  if (s.length <= 1) return s;\n  return reverseStringRecursive(s.slice(1)) + s[0];\n}"
+      }
+    },
+    {
+      "id": "bubble_sort",
+      "topic": "sorting",
+      "title": "Bubble Sort",
+      "statement": "Sort an integer array in ascending order using bubble sort.",
+      "constraints": [
+        "O(n^2) acceptable",
+        "Return a new sorted array"
+      ],
+      "examples": [
+        {
+          "input": "nums=[5,1,4,2]",
+          "output": "[1,2,4,5]"
+        }
+      ],
+      "function": "bubbleSort",
+      "starter_file": "bubbleSort.js",
+      "tests": [
+        {
+          "args": [
+            [
+              5,
+              1,
+              4,
+              2
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1
+            ]
+          ],
+          "expected": [
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              3,
+              3,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            3,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              9,
+              8,
+              7
+            ]
+          ],
+          "expected": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "args": [
+            [
+              -2,
+              -1,
+              0
+            ]
+          ],
+          "expected": [
+            -2,
+            -1,
+            0
+          ]
+        },
+        {
+          "args": [
+            [
+              2,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              4,
+              2,
+              4,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4,
+            4
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(n^2)",
+        "space": "O(n)",
+        "approach": "Repeatedly swap adjacent out-of-order elements; stop early if no swaps.",
+        "code": "export function bubbleSort(nums) {\n  const arr = [...nums];\n  for (let i = 0; i < arr.length; i += 1) {\n    let swapped = false;\n    for (let j = 0; j < arr.length - i - 1; j += 1) {\n      if (arr[j] > arr[j + 1]) {\n        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];\n        swapped = true;\n      }\n    }\n    if (!swapped) break;\n  }\n  return arr;\n}"
+      }
+    },
+    {
+      "id": "selection_sort",
+      "topic": "sorting",
+      "title": "Selection Sort",
+      "statement": "Sort an integer array in ascending order using selection sort.",
+      "constraints": [
+        "O(n^2) time",
+        "Return a new sorted array"
+      ],
+      "examples": [
+        {
+          "input": "nums=[5,1,4,2]",
+          "output": "[1,2,4,5]"
+        }
+      ],
+      "function": "selectionSort",
+      "starter_file": "selectionSort.js",
+      "tests": [
+        {
+          "args": [
+            [
+              5,
+              1,
+              4,
+              2
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1
+            ]
+          ],
+          "expected": [
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              3,
+              3,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            3,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              9,
+              8,
+              7
+            ]
+          ],
+          "expected": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "args": [
+            [
+              -1,
+              0,
+              2
+            ]
+          ],
+          "expected": [
+            -1,
+            0,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              2,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              4,
+              2,
+              4,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4,
+            4
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(n^2)",
+        "space": "O(n)",
+        "approach": "Select min of unsorted suffix and swap to front each pass.",
+        "code": "export function selectionSort(nums) {\n  const arr = [...nums];\n  for (let i = 0; i < arr.length; i += 1) {\n    let minIdx = i;\n    for (let j = i + 1; j < arr.length; j += 1) {\n      if (arr[j] < arr[minIdx]) minIdx = j;\n    }\n    [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];\n  }\n  return arr;\n}"
+      }
+    },
+    {
+      "id": "insertion_sort",
+      "topic": "sorting",
+      "title": "Insertion Sort",
+      "statement": "Sort an integer array in ascending order using insertion sort.",
+      "constraints": [
+        "O(n^2) worst case",
+        "Stable sort"
+      ],
+      "examples": [
+        {
+          "input": "nums=[5,1,4,2]",
+          "output": "[1,2,4,5]"
+        }
+      ],
+      "function": "insertionSort",
+      "starter_file": "insertionSort.js",
+      "tests": [
+        {
+          "args": [
+            [
+              5,
+              1,
+              4,
+              2
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1
+            ]
+          ],
+          "expected": [
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              3,
+              3,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            3,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              9,
+              8,
+              7
+            ]
+          ],
+          "expected": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "args": [
+            [
+              -1,
+              0,
+              2
+            ]
+          ],
+          "expected": [
+            -1,
+            0,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              2,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              4,
+              2,
+              4,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4,
+            4
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(n^2)",
+        "space": "O(n)",
+        "approach": "Insert each element into the sorted prefix by shifting larger elements right.",
+        "code": "export function insertionSort(nums) {\n  const arr = [...nums];\n  for (let i = 1; i < arr.length; i += 1) {\n    const key = arr[i];\n    let j = i - 1;\n    while (j >= 0 && arr[j] > key) {\n      arr[j + 1] = arr[j];\n      j -= 1;\n    }\n    arr[j + 1] = key;\n  }\n  return arr;\n}"
+      }
+    },
+    {
+      "id": "quick_sort",
+      "topic": "sorting",
+      "title": "Quick Sort",
+      "statement": "Sort an integer array in ascending order using quick sort.",
+      "constraints": [
+        "Average O(n log n)",
+        "Return new sorted array"
+      ],
+      "examples": [
+        {
+          "input": "nums=[5,1,4,2,8]",
+          "output": "[1,2,4,5,8]"
+        }
+      ],
+      "function": "quickSort",
+      "starter_file": "quickSort.js",
+      "tests": [
+        {
+          "args": [
+            [
+              5,
+              1,
+              4,
+              2,
+              8
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1
+            ]
+          ],
+          "expected": [
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              3,
+              3,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            3,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              9,
+              8,
+              7,
+              6
+            ]
+          ],
+          "expected": [
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "args": [
+            [
+              -2,
+              -1,
+              0
+            ]
+          ],
+          "expected": [
+            -2,
+            -1,
+            0
+          ]
+        },
+        {
+          "args": [
+            [
+              10,
+              -10,
+              0
+            ]
+          ],
+          "expected": [
+            -10,
+            0,
+            10
+          ]
+        },
+        {
+          "args": [
+            [
+              4,
+              2,
+              4,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4,
+            4
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(n log n) average",
+        "space": "O(n)",
+        "approach": "Partition around pivot, recursively sort left and right partitions.",
+        "code": "export function quickSort(nums) {\n  if (nums.length <= 1) return [...nums];\n  const pivot = nums[Math.floor(nums.length / 2)];\n  const left = nums.filter((n) => n < pivot);\n  const mid = nums.filter((n) => n === pivot);\n  const right = nums.filter((n) => n > pivot);\n  return [...quickSort(left), ...mid, ...quickSort(right)];\n}"
+      }
+    },
+    {
+      "id": "heap_sort",
+      "topic": "sorting",
+      "title": "Heap Sort",
+      "statement": "Sort an integer array in ascending order using heap sort.",
+      "constraints": [
+        "O(n log n) time",
+        "Use a heap structure"
+      ],
+      "examples": [
+        {
+          "input": "nums=[5,1,4,2]",
+          "output": "[1,2,4,5]"
+        }
+      ],
+      "function": "heapSort",
+      "starter_file": "heapSort.js",
+      "tests": [
+        {
+          "args": [
+            [
+              5,
+              1,
+              4,
+              2
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1
+            ]
+          ],
+          "expected": [
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              3,
+              3,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            3,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              9,
+              8,
+              7
+            ]
+          ],
+          "expected": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "args": [
+            [
+              -1,
+              0,
+              2
+            ]
+          ],
+          "expected": [
+            -1,
+            0,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              2,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              4,
+              2,
+              4,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            4,
+            4
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(n log n)",
+        "space": "O(1) extra if in-place",
+        "approach": "Build max heap, repeatedly extract max to end of array.",
+        "code": "export function heapSort(nums) {\n  const arr = [...nums];\n\n  const heapify = (n, i) => {\n    let largest = i;\n    const left = i * 2 + 1;\n    const right = i * 2 + 2;\n    if (left < n && arr[left] > arr[largest]) largest = left;\n    if (right < n && arr[right] > arr[largest]) largest = right;\n    if (largest !== i) {\n      [arr[i], arr[largest]] = [arr[largest], arr[i]];\n      heapify(n, largest);\n    }\n  };\n\n  for (let i = Math.floor(arr.length / 2) - 1; i >= 0; i -= 1) heapify(arr.length, i);\n  for (let end = arr.length - 1; end > 0; end -= 1) {\n    [arr[0], arr[end]] = [arr[end], arr[0]];\n    heapify(end, 0);\n  }\n  return arr;\n}"
+      }
+    },
+    {
+      "id": "counting_sort",
+      "topic": "sorting",
+      "title": "Counting Sort",
+      "statement": "Sort a non-negative integer array using counting sort. Assume values are in range 0..1000.",
+      "constraints": [
+        "O(n + k) time",
+        "Non-comparison sort"
+      ],
+      "examples": [
+        {
+          "input": "nums=[4,2,2,8,3,3,1]",
+          "output": "[1,2,2,3,3,4,8]"
+        }
+      ],
+      "function": "countingSort",
+      "starter_file": "countingSort.js",
+      "tests": [
+        {
+          "args": [
+            [
+              4,
+              2,
+              2,
+              8,
+              3,
+              3,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            8
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              0
+            ]
+          ],
+          "expected": [
+            0
+          ]
+        },
+        {
+          "args": [
+            [
+              5,
+              5,
+              5
+            ]
+          ],
+          "expected": [
+            5,
+            5,
+            5
+          ]
+        },
+        {
+          "args": [
+            [
+              3,
+              1,
+              2
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              10,
+              0,
+              5
+            ]
+          ],
+          "expected": [
+            0,
+            5,
+            10
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              0,
+              1,
+              0
+            ]
+          ],
+          "expected": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              7
+            ]
+          ],
+          "expected": [
+            7
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(n + k)",
+        "space": "O(k)",
+        "approach": "Count occurrences, then rebuild output array in order.",
+        "code": "export function countingSort(nums) {\n  if (!nums.length) return [];\n  const max = Math.max(...nums);\n  const counts = Array(max + 1).fill(0);\n  for (const n of nums) counts[n] += 1;\n  const out = [];\n  for (let i = 0; i <= max; i += 1) {\n    while (counts[i] > 0) {\n      out.push(i);\n      counts[i] -= 1;\n    }\n  }\n  return out;\n}"
+      }
+    },
+    {
+      "id": "linear_search",
+      "topic": "searching",
+      "title": "Linear Search",
+      "statement": "Return the index of `target` in `nums`, or -1 if not found. Use linear search.",
+      "constraints": [
+        "O(n) time",
+        "Do not use binary search"
+      ],
+      "examples": [
+        {
+          "input": "nums=[4,2,7,1], target=7",
+          "output": "2"
+        },
+        {
+          "input": "target=9",
+          "output": "-1"
+        }
+      ],
+      "function": "linearSearch",
+      "starter_file": "linearSearch.js",
+      "tests": [
+        {
+          "args": [
+            [
+              4,
+              2,
+              7,
+              1
+            ],
+            7
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              4,
+              2,
+              7,
+              1
+            ],
+            9
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            [
+              5
+            ],
+            5
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [],
+            1
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            1
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            3
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              10,
+              20,
+              10
+            ],
+            10
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              -1,
+              0,
+              1
+            ],
+            0
+          ],
+          "expected": 1
+        }
+      ],
+      "solution": {
+        "time": "O(n)",
+        "space": "O(1)",
+        "approach": "Scan array left to right until target found.",
+        "code": "export function linearSearch(nums, target) {\n  for (let i = 0; i < nums.length; i += 1) {\n    if (nums[i] === target) return i;\n  }\n  return -1;\n}"
+      }
+    },
+    {
+      "id": "tree_traversals",
+      "topic": "searching",
+      "title": "Binary Tree Traversals",
+      "statement": "Given a binary tree in level-order array form (`null` for missing nodes), return `{ preorder, inorder, postorder }` arrays.",
+      "constraints": [
+        "O(n) time",
+        "Use index-based children at 2i+1 and 2i+2"
+      ],
+      "examples": [
+        {
+          "input": "tree=[1,null,2,null,null,3]",
+          "output": "pre=[1,2,3], in=[1,3,2], post=[3,2,1]"
+        }
+      ],
+      "function": "treeTraversals",
+      "starter_file": "treeTraversals.js",
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              null,
+              2,
+              null,
+              null,
+              3
+            ]
+          ],
+          "expected": {
+            "preorder": [
+              1,
+              2,
+              3
+            ],
+            "inorder": [
+              1,
+              3,
+              2
+            ],
+            "postorder": [
+              3,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "args": [
+            [
+              2,
+              1,
+              3
+            ]
+          ],
+          "expected": {
+            "preorder": [
+              2,
+              1,
+              3
+            ],
+            "inorder": [
+              1,
+              2,
+              3
+            ],
+            "postorder": [
+              1,
+              3,
+              2
+            ]
+          }
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": {
+            "preorder": [],
+            "inorder": [],
+            "postorder": []
+          }
+        },
+        {
+          "args": [
+            [
+              5
+            ]
+          ],
+          "expected": {
+            "preorder": [
+              5
+            ],
+            "inorder": [
+              5
+            ],
+            "postorder": [
+              5
+            ]
+          }
+        },
+        {
+          "args": [
+            [
+              10,
+              5,
+              15
+            ]
+          ],
+          "expected": {
+            "preorder": [
+              10,
+              5,
+              15
+            ],
+            "inorder": [
+              5,
+              10,
+              15
+            ],
+            "postorder": [
+              5,
+              15,
+              10
+            ]
+          }
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          ],
+          "expected": {
+            "preorder": [
+              1,
+              2,
+              4,
+              5,
+              3,
+              6,
+              7
+            ],
+            "inorder": [
+              4,
+              2,
+              5,
+              1,
+              6,
+              3,
+              7
+            ],
+            "postorder": [
+              4,
+              5,
+              2,
+              6,
+              7,
+              3,
+              1
+            ]
+          }
+        },
+        {
+          "args": [
+            [
+              3,
+              1,
+              null,
+              null,
+              2
+            ]
+          ],
+          "expected": {
+            "preorder": [
+              3,
+              1,
+              2
+            ],
+            "inorder": [
+              1,
+              2,
+              3
+            ],
+            "postorder": [
+              2,
+              1,
+              3
+            ]
+          }
+        },
+        {
+          "args": [
+            [
+              8,
+              4,
+              12,
+              2,
+              6
+            ]
+          ],
+          "expected": {
+            "preorder": [
+              8,
+              4,
+              2,
+              6,
+              12
+            ],
+            "inorder": [
+              2,
+              4,
+              6,
+              8,
+              12
+            ],
+            "postorder": [
+              2,
+              6,
+              4,
+              12,
+              8
+            ]
+          }
+        }
+      ],
+      "solution": {
+        "time": "O(n)",
+        "space": "O(h)",
+        "approach": "DFS from root index with three collectors for pre/in/post order.",
+        "code": "export function treeTraversals(tree) {\n  const preorder = [];\n  const inorder = [];\n  const postorder = [];\n\n  const walk = (index) => {\n    if (index >= tree.length || tree[index] === null || tree[index] === undefined) return;\n    const val = tree[index];\n    preorder.push(val);\n    walk(index * 2 + 1);\n    inorder.push(val);\n    walk(index * 2 + 2);\n    postorder.push(val);\n  };\n\n  if (tree.length) walk(0);\n  return { preorder, inorder, postorder };\n}"
+      }
+    },
+    {
+      "id": "dijkstra_shortest_path",
+      "topic": "searching",
+      "title": "Dijkstra Shortest Path",
+      "statement": "Given a weighted directed graph as `{ node: [[neighbor, weight], ...] }` and a `start` node, return shortest distances from start to all reachable nodes as an object.",
+      "constraints": [
+        "Non-negative weights",
+        "O((V+E) log V) target"
+      ],
+      "examples": [
+        {
+          "input": "graph={A:[[B,1],[C,4]],B:[[C,2]],C:[]}, start=A",
+          "output": "{A:0,B:1,C:3}"
+        }
+      ],
+      "function": "dijkstra",
+      "starter_file": "dijkstra.js",
+      "tests": [
+        {
+          "args": [
+            {
+              "A": [
+                [
+                  "B",
+                  1
+                ],
+                [
+                  "C",
+                  4
+                ]
+              ],
+              "B": [
+                [
+                  "C",
+                  2
+                ]
+              ],
+              "C": []
+            },
+            "A"
+          ],
+          "expected": {
+            "A": 0,
+            "B": 1,
+            "C": 3
+          }
+        },
+        {
+          "args": [
+            {
+              "0": [
+                [
+                  1,
+                  5
+                ]
+              ],
+              "1": []
+            },
+            0
+          ],
+          "expected": {
+            "0": 0,
+            "1": 5
+          }
+        },
+        {
+          "args": [
+            {
+              "X": []
+            },
+            "X"
+          ],
+          "expected": {
+            "X": 0
+          }
+        },
+        {
+          "args": [
+            {
+              "a": [
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "c",
+                  5
+                ]
+              ],
+              "b": [
+                [
+                  "c",
+                  1
+                ]
+              ],
+              "c": []
+            },
+            "a"
+          ],
+          "expected": {
+            "a": 0,
+            "b": 2,
+            "c": 3
+          }
+        },
+        {
+          "args": [
+            {
+              "0": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  4
+                ]
+              ],
+              "1": [
+                [
+                  2,
+                  2
+                ]
+              ],
+              "2": []
+            },
+            0
+          ],
+          "expected": {
+            "0": 0,
+            "1": 1,
+            "2": 3
+          }
+        },
+        {
+          "args": [
+            {
+              "s": [
+                [
+                  "t",
+                  10
+                ]
+              ],
+              "t": [
+                [
+                  "u",
+                  1
+                ]
+              ],
+              "u": []
+            },
+            "s"
+          ],
+          "expected": {
+            "s": 0,
+            "t": 10,
+            "u": 11
+          }
+        },
+        {
+          "args": [
+            {
+              "1": [
+                [
+                  2,
+                  3
+                ],
+                [
+                  3,
+                  8
+                ]
+              ],
+              "2": [
+                [
+                  3,
+                  1
+                ]
+              ],
+              "3": []
+            },
+            1
+          ],
+          "expected": {
+            "1": 0,
+            "2": 3,
+            "3": 4
+          }
+        },
+        {
+          "args": [
+            {
+              "A": [
+                [
+                  "B",
+                  0
+                ]
+              ],
+              "B": []
+            },
+            "A"
+          ],
+          "expected": {
+            "A": 0,
+            "B": 0
+          }
+        }
+      ],
+      "solution": {
+        "time": "O((V+E) log V)",
+        "space": "O(V)",
+        "approach": "Greedy with min-distance node selection; relax neighbors.",
+        "code": "export function dijkstra(graph, start) {\n  const dist = { [start]: 0 };\n  const visited = new Set();\n\n  while (visited.size < Object.keys(dist).length) {\n    let curr = null;\n    let best = Infinity;\n    for (const [node, d] of Object.entries(dist)) {\n      if (!visited.has(node) && d < best) {\n        best = d;\n        curr = node;\n      }\n    }\n    if (curr === null) break;\n    visited.add(curr);\n    for (const [neighbor, weight] of graph[curr] || []) {\n      const next = best + weight;\n      if (!(neighbor in dist) || next < dist[neighbor]) dist[neighbor] = next;\n    }\n  }\n  return dist;\n}"
+      }
+    },
+    {
+      "id": "fibonacci_memo",
+      "topic": "dynamic_programming",
+      "title": "Fibonacci (Memoization)",
+      "statement": "Return the nth Fibonacci number using top-down dynamic programming (memoization). F(0)=0, F(1)=1.",
+      "constraints": [
+        "0 <= n <= 50",
+        "Must use memoization"
+      ],
+      "examples": [
+        {
+          "input": "n=10",
+          "output": "55"
+        },
+        {
+          "input": "n=0",
+          "output": "0"
+        }
+      ],
+      "function": "fibonacciMemo",
+      "starter_file": "fibonacciMemo.js",
+      "tests": [
+        {
+          "args": [
+            10
+          ],
+          "expected": 55
+        },
+        {
+          "args": [
+            0
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            1
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            6
+          ],
+          "expected": 8
+        },
+        {
+          "args": [
+            15
+          ],
+          "expected": 610
+        },
+        {
+          "args": [
+            20
+          ],
+          "expected": 6765
+        },
+        {
+          "args": [
+            2
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            30
+          ],
+          "expected": 832040
+        }
+      ],
+      "solution": {
+        "time": "O(n)",
+        "space": "O(n)",
+        "approach": "Recursive with memo object caching subproblem results.",
+        "code": "export function fibonacciMemo(n, memo = {}) {\n  if (n in memo) return memo[n];\n  if (n <= 1) return n;\n  memo[n] = fibonacciMemo(n - 1, memo) + fibonacciMemo(n - 2, memo);\n  return memo[n];\n}"
+      }
+    },
+    {
+      "id": "radix_sort",
+      "topic": "sorting",
+      "title": "Radix Sort",
+      "statement": "Sort a non-negative integer array using LSD radix sort (base 10). Return a new sorted array.",
+      "constraints": [
+        "0 <= nums[i] <= 10^6",
+        "O(d * (n + k)) time where d is number of digits",
+        "Non-comparison sort"
+      ],
+      "examples": [
+        {
+          "input": "nums=[170,45,75,90,802,24,2,66]",
+          "output": "[2,24,45,66,75,90,170,802]"
+        },
+        {
+          "input": "nums=[5,2,8,1]",
+          "output": "[1,2,5,8]"
+        }
+      ],
+      "function": "radixSort",
+      "starter_file": "radixSort.js",
+      "tests": [
+        {
+          "args": [
+            [
+              170,
+              45,
+              75,
+              90,
+              802,
+              24,
+              2,
+              66
+            ]
+          ],
+          "expected": [
+            2,
+            24,
+            45,
+            66,
+            75,
+            90,
+            170,
+            802
+          ]
+        },
+        {
+          "args": [
+            [
+              5,
+              2,
+              8,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            5,
+            8
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              0
+            ]
+          ],
+          "expected": [
+            0
+          ]
+        },
+        {
+          "args": [
+            [
+              10,
+              1,
+              10
+            ]
+          ],
+          "expected": [
+            1,
+            10,
+            10
+          ]
+        },
+        {
+          "args": [
+            [
+              100,
+              10,
+              1
+            ]
+          ],
+          "expected": [
+            1,
+            10,
+            100
+          ]
+        },
+        {
+          "args": [
+            [
+              9,
+              8,
+              7,
+              6,
+              5
+            ]
+          ],
+          "expected": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "args": [
+            [
+              505,
+              55,
+              5
+            ]
+          ],
+          "expected": [
+            5,
+            55,
+            505
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(d * (n + k))",
+        "space": "O(n + k)",
+        "approach": "Sort by each digit place from least significant to most using counting/bucket distribution.",
+        "code": "export function radixSort(nums) {\n  if (!nums.length) return [];\n  const arr = [...nums];\n  const max = Math.max(...arr);\n  let exp = 1;\n  while (Math.floor(max / exp) > 0) {\n    const buckets = Array.from({ length: 10 }, () => []);\n    for (const n of arr) {\n      const digit = Math.floor(n / exp) % 10;\n      buckets[digit].push(n);\n    }\n    arr.length = 0;\n    for (const bucket of buckets) arr.push(...bucket);\n    exp *= 10;\n  }\n  return arr;\n}"
+      }
+    },
+    {
+      "id": "bellman_ford",
+      "topic": "searching",
+      "title": "Bellman-Ford Shortest Path",
+      "statement": "Given a weighted directed graph `{ node: [[neighbor, weight], ...] }` and a `start` node, return `{ distances, hasNegativeCycle }`. `distances[node]` is shortest distance from start, or `null` if unreachable. If a negative cycle is reachable, set `hasNegativeCycle` to true and `distances` to null.",
+      "constraints": [
+        "May include negative edge weights",
+        "O(V * E) time",
+        "No parallel multi-edge simplification needed"
+      ],
+      "examples": [
+        {
+          "input": "graph with edges A->B(1), B->C(2), start=A",
+          "output": "{A:0,B:1,C:3,hasNegativeCycle:false}"
+        },
+        {
+          "input": "graph with negative cycle",
+          "output": "hasNegativeCycle:true"
+        }
+      ],
+      "function": "bellmanFord",
+      "starter_file": "bellmanFord.js",
+      "tests": [
+        {
+          "args": [
+            {
+              "A": [
+                [
+                  "B",
+                  1
+                ],
+                [
+                  "C",
+                  4
+                ]
+              ],
+              "B": [
+                [
+                  "C",
+                  2
+                ]
+              ],
+              "C": []
+            },
+            "A"
+          ],
+          "expected": {
+            "distances": {
+              "A": 0,
+              "B": 1,
+              "C": 3
+            },
+            "hasNegativeCycle": false
+          }
+        },
+        {
+          "args": [
+            {
+              "0": [
+                [
+                  1,
+                  5
+                ]
+              ],
+              "1": []
+            },
+            0
+          ],
+          "expected": {
+            "distances": {
+              "0": 0,
+              "1": 5
+            },
+            "hasNegativeCycle": false
+          }
+        },
+        {
+          "args": [
+            {
+              "A": [
+                [
+                  "B",
+                  -1
+                ]
+              ],
+              "B": [
+                [
+                  "C",
+                  -2
+                ]
+              ],
+              "C": [
+                [
+                  "A",
+                  -3
+                ]
+              ]
+            },
+            "A"
+          ],
+          "expected": {
+            "distances": null,
+            "hasNegativeCycle": true
+          }
+        },
+        {
+          "args": [
+            {
+              "a": [
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "c",
+                  5
+                ]
+              ],
+              "b": [
+                [
+                  "c",
+                  -10
+                ]
+              ],
+              "c": []
+            },
+            "a"
+          ],
+          "expected": {
+            "distances": {
+              "a": 0,
+              "b": 2,
+              "c": -8
+            },
+            "hasNegativeCycle": false
+          }
+        },
+        {
+          "args": [
+            {
+              "X": []
+            },
+            "X"
+          ],
+          "expected": {
+            "distances": {
+              "X": 0
+            },
+            "hasNegativeCycle": false
+          }
+        },
+        {
+          "args": [
+            {
+              "s": [
+                [
+                  "t",
+                  1
+                ]
+              ],
+              "t": [
+                [
+                  "u",
+                  1
+                ]
+              ],
+              "u": []
+            },
+            "s"
+          ],
+          "expected": {
+            "distances": {
+              "s": 0,
+              "t": 1,
+              "u": 2
+            },
+            "hasNegativeCycle": false
+          }
+        },
+        {
+          "args": [
+            {
+              "1": [
+                [
+                  2,
+                  3
+                ]
+              ],
+              "2": [
+                [
+                  3,
+                  4
+                ]
+              ],
+              "3": [
+                [
+                  1,
+                  -10
+                ]
+              ]
+            },
+            1
+          ],
+          "expected": {
+            "distances": null,
+            "hasNegativeCycle": true
+          }
+        },
+        {
+          "args": [
+            {
+              "0": [
+                [
+                  1,
+                  0
+                ]
+              ],
+              "1": []
+            },
+            0
+          ],
+          "expected": {
+            "distances": {
+              "0": 0,
+              "1": 0
+            },
+            "hasNegativeCycle": false
+          }
+        }
+      ],
+      "solution": {
+        "time": "O(V * E)",
+        "space": "O(V)",
+        "approach": "Relax all edges V-1 times, then one more pass to detect negative cycles.",
+        "code": "export function bellmanFord(graph, start) {\n  const dist = {};\n  for (const node of Object.keys(graph)) dist[node] = null;\n  dist[start] = 0;\n\n  const edges = [];\n  for (const [u, neighbors] of Object.entries(graph)) {\n    for (const [v, w] of neighbors) edges.push([u, v, w]);\n  }\n\n  const nodes = Object.keys(graph);\n  for (let i = 0; i < nodes.length - 1; i += 1) {\n    for (const [u, v, w] of edges) {\n      if (dist[u] !== null && (dist[v] === null || dist[u] + w < dist[v])) {\n        dist[v] = dist[u] + w;\n      }\n    }\n  }\n\n  for (const [u, v, w] of edges) {\n    if (dist[u] !== null && dist[v] !== null && dist[u] + w < dist[v]) {\n      return { distances: null, hasNegativeCycle: true };\n    }\n    if (dist[u] !== null && dist[v] === null && dist[u] + w < 0) {\n      return { distances: null, hasNegativeCycle: true };\n    }\n  }\n\n  return { distances: dist, hasNegativeCycle: false };\n}"
+      }
+    },
+    {
+      "id": "avl_tree",
+      "topic": "trees",
+      "title": "AVL Tree Insert with Rotations",
+      "statement": "Implement an `AVLTree` class with `insert(val)` and `inorder()` (sorted values). The tree must stay height-balanced using LL, RR, LR, and RL rotations after each insert.",
+      "constraints": [
+        "Values are distinct integers",
+        "insert is O(log n)",
+        "Height balance factor must stay in {-1, 0, 1}"
+      ],
+      "examples": [
+        {
+          "input": "insert(10), insert(20), insert(30)",
+          "output": "inorder=[20,30] wait - [20] root? Actually after AVL: 20 root, 10 left, 30 right -> [10,20,30]"
+        },
+        {
+          "input": "insert(30), insert(10), insert(20)",
+          "output": "[10,20,30] after LR rotation"
+        }
+      ],
+      "function": "AVLTree",
+      "starter_file": "avlTree.js",
+      "tests": [
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                10
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                20
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                30
+              ]
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                10,
+                20,
+                30
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                30
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                10
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                20
+              ]
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                10,
+                20,
+                30
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                10
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                30
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                20
+              ]
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                10,
+                20,
+                30
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                30
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                10
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                40
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                20
+              ]
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                10,
+                20,
+                30,
+                40
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                2
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                8
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                1
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                3
+              ]
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                1,
+                2,
+                3,
+                5,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                50
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                25
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                75
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                10
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                30
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                60
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                80
+              ]
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                10,
+                25,
+                30,
+                50,
+                60,
+                75,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                42
+              ]
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                42
+              ]
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "operations": [
+            {
+              "op": "insert",
+              "args": [
+                9
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                5
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                7
+              ]
+            },
+            {
+              "op": "insert",
+              "args": [
+                6
+              ]
+            },
+            {
+              "op": "inorder",
+              "expected": [
+                5,
+                6,
+                7,
+                9
+              ]
+            }
+          ]
+        }
+      ],
+      "solution": {
+        "time": "O(log n) per insert",
+        "space": "O(n)",
+        "approach": "BST insert then rebalance using single/double rotations based on balance factor and child direction.",
+        "code": "class Node {\n  constructor(val) {\n    this.val = val;\n    this.left = null;\n    this.right = null;\n    this.height = 1;\n  }\n}\n\nexport class AVLTree {\n  constructor() {\n    this.root = null;\n  }\n\n  height(node) {\n    return node ? node.height : 0;\n  }\n\n  balanceFactor(node) {\n    return node ? this.height(node.left) - this.height(node.right) : 0;\n  }\n\n  updateHeight(node) {\n    node.height = 1 + Math.max(this.height(node.left), this.height(node.right));\n  }\n\n  rotateRight(y) {\n    const x = y.left;\n    const t2 = x.right;\n    x.right = y;\n    y.left = t2;\n    this.updateHeight(y);\n    this.updateHeight(x);\n    return x;\n  }\n\n  rotateLeft(x) {\n    const y = x.right;\n    const t2 = y.left;\n    y.left = x;\n    x.right = t2;\n    this.updateHeight(x);\n    this.updateHeight(y);\n    return y;\n  }\n\n  insertNode(node, val) {\n    if (!node) return new Node(val);\n    if (val < node.val) node.left = this.insertNode(node.left, val);\n    else if (val > node.val) node.right = this.insertNode(node.right, val);\n    else return node;\n\n    this.updateHeight(node);\n    const balance = this.balanceFactor(node);\n\n    if (balance > 1 && val < node.left.val) return this.rotateRight(node);\n    if (balance < -1 && val > node.right.val) return this.rotateLeft(node);\n    if (balance > 1 && val > node.left.val) {\n      node.left = this.rotateLeft(node.left);\n      return this.rotateRight(node);\n    }\n    if (balance < -1 && val < node.right.val) {\n      node.right = this.rotateRight(node.right);\n      return this.rotateLeft(node);\n    }\n    return node;\n  }\n\n  insert(val) {\n    this.root = this.insertNode(this.root, val);\n  }\n\n  inorder() {\n    const out = [];\n    const walk = (node) => {\n      if (!node) return;\n      walk(node.left);\n      out.push(node.val);\n      walk(node.right);\n    };\n    walk(this.root);\n    return out;\n  }\n}"
+      }
+    }
+  ]
+}
